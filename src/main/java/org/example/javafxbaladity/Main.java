@@ -14,8 +14,9 @@ public class Main extends Application {
         //Connection To Database
         Database.connectDB();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1098, 667);
+        stage.setResizable(false);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

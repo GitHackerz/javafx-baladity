@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1098.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.LoginController">
+   <Pane prefHeight="615.0" prefWidth="546.0" styleClass="left-login">
+      <ImageView fitHeight="404.0" fitWidth="404.0" layoutX="71.0" layoutY="131.0">
+         <Image url="@../assets/login 1.png" />
+      </ImageView>
+   </Pane>
+   <Pane prefHeight="608.0" prefWidth="546.0" styleClass="right-login">
+      <Text fill="#0c162c" layoutX="60.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="right-login-title" text=" Signin to account" wrappingWidth="440.0" />
+      <HBox layoutX="225.0" layoutY="199.0" prefHeight="6.0" prefWidth="101.0" styleClass="text-hbib" />
+      <HBox layoutX="232.0" layoutY="213.0" prefHeight="27.0" prefWidth="64.0" spacing="30.0">
+         <children>
+            <ImageView>
+               <Image url="@../assets/MdEmail.png" />
+            </ImageView>
+            <ImageView>
+               <Image url="@../assets/FaFacebookSquare.png" />
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="90.0" layoutY="296.0" prefHeight="37.0" prefWidth="371.0" spacing="20.0" styleClass="text-input-layout">
+         <Label prefHeight="20.0" prefWidth="90.0" text="Email : ">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <TextField focusTraversable="false" prefHeight="25.0" prefWidth="216.0" promptText="exemple@exemple.tn" styleClass="text-input" />
+         <ImageView>
+            <Image url="@../assets/MdMailOutline.png" />
+         </ImageView>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="90.0" layoutY="349.0" prefHeight="37.0" prefWidth="371.0" spacing="20.0" styleClass="text-input-layout">
+         <Label prefHeight="20.0" prefWidth="87.0" text="Password : ">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <TextField focusTraversable="false" prefHeight="26.0" prefWidth="218.0" promptText="********" styleClass="text-input" />
+         <ImageView>
+            <Image url="@../assets/FaEye.png" />
+         </ImageView>
+      </HBox>
+      <CheckBox layoutX="83.0" layoutY="407.0" mnemonicParsing="false" text="Remember me " />
+      <Button layoutX="346.0" layoutY="402.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Forget Password ?">
+         <textFill>
+            <LinearGradient>
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.47040000557899475" green="0.545005738735199" blue="0.9599999785423279" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.4000000059604645" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="SignIn_Btn" alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="469.0" mnemonicParsing="false" onAction="#OnSignInClicked" prefHeight="41.0" prefWidth="168.0" styleClass="left-sidebar-users-link" text="Sign in" textAlignment="CENTER" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <HBox layoutX="158.0" layoutY="524.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="180.0" text="If you don t have an account ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Group>
+               <children>
+                  <Button layoutY="1.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: white;" text="Sign up">
+                     <textFill>
+                        <LinearGradient>
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.47040000557899475" green="0.545005738735199" blue="0.9599999785423279" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color green="0.4000000059604645" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Group>
+         </children>
+      </HBox>
+   </Pane>
+</SplitPane>

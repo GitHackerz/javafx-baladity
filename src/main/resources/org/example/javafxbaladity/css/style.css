@@ -1,0 +1,95 @@
+.left-sidebar-container {
+    -fx-width: 100%;
+    -fx-display: flex;
+    -fx-overflow: auto;
+    -fx-min-height: "100vh";
+    -fx-align-items: center;
+    -fx-flex-direction: column;
+}
+
+.left-sidebar-left-sidebar {
+
+    -fx-width: 100%;
+    -fx-height: auto;
+    -fx-display: flex;
+    -fx-padding: 20px 0 30px;
+    -fx-overflow: hidden;
+    -fx-align-self: stretch;
+    -fx-align-items: center;
+    -fx-flex-shrink: 0;
+    -fx-border-color: rgba(183, 183, 183, 1);
+    -fx-border-style: solid;
+    -fx-border-width: 0 2px 0 0;
+    -fx-flex-direction: column;
+    -fx-background-color: rgba(12, 22, 44, 1);
+}
+
+.left-sidebar-link {
+
+
+    -fx-display: flex;
+    -fx-padding: 10px 50px 10px 20px;
+    -fx-align-items: center;
+    -fx-gap: 10px;
+    -fx-align-self: stretch;
+    -fx-background-radius: 10px;
+    -fx-background-color: #0066FF;
+}
+
+.left-sidebar-users-link {
+    -fx-background-radius: 10px;
+    -fx-gap: 10px;
+    -fx-display: flex;
+    -fx-padding: 10px 50px 10px 20px;
+    -fx-align-self: stretch;
+    -fx-align-items: center;
+    -fx-flex-shrink: 0;
+    -fx-background-color: rgba(12, 22, 44, 1);
+}
+
+.left-sidebar-users-link:hover {
+
+    -fx-background-radius: 10px;
+    -fx-gap: 10px;
+    -fx-display: flex;
+    -fx-padding: 10px 50px 10px 20px;
+    -fx-align-self: stretch;
+    -fx-align-items: center;
+    -fx-flex-shrink: 0;
+    -fx-background-color: #0066FF;
+}
+
+
+/*.left-sidebar-users-link:focused {*/
+/*    -fx-display: flex;*/
+/*    -fx-padding: 10px 50px 10px 20px;*/
+/*    -fx-align-items: center;*/
+/*    -fx-gap: 10px;*/
+/*    -fx-align-self: stretch;*/
+/*    -fx-background-radius: 10px;*/
+/*    -fx-background-color : #0066FF;*/
+/*}*/
+
+
+.box {
+    -fx-display: flex;
+    -fx-padding: 10px 50px 10px 20px;
+    -fx-align-items: center;
+    -fx-gap: 10px;
+    -fx-align-self: stretch;
+    -fx-background-radius: 10px;
+    -fx-background-color: #ffffff;
+}
+
+.User {
+    -fx-background-color: #48abe0;
+    -fx-color: white;
+    -fx-border: none;
+    -fx-padding: 5px;
+    -fx-font-size: 31px;
+    -fx-height: 130px;
+    -fx-width: 130px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-radius: 50%;
+
+}
