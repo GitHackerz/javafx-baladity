@@ -1,11 +1,12 @@
 package org.example.javafxbaladity.interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IService<T> {
-    public void create(T t);
-    public T read(int id);
-    public void update(T t);
-    public void delete(int id);
-    public List<T> readAll();
+    public void create(T t) throws SQLException;;
+    public T read(int id) throws SQLException;;
+    public void update(T t) throws SQLException;;
+    public void delete(int id) throws SQLException;;
+    public List<T> readAll() throws SQLException;;
 }
