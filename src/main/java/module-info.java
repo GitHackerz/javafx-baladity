@@ -10,6 +10,7 @@ module org.example.javafxbaladity {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires javafx.media;
 
     opens org.example.javafxbaladity to javafx.fxml;
     exports org.example.javafxbaladity;
