@@ -1,5 +1,6 @@
 package org.example.javafxbaladity.gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,10 +9,21 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.javafxbaladity.Main;
 
+
 public class HomeController {
 
     @FXML
     Button Users_Btn, Home_Btn, Documents_Btn;
+    @FXML
+    private Button Events_btn;
+    @FXML
+    void OnEventsBtnClick(ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/events.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage window = (Stage) Events_btn.getScene().getWindow();
+        window.setScene(new Scene(root, 1098, 667));
+
+    }
 
     public void onHomeButtonClick() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/home.fxml"));

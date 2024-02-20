@@ -11,6 +11,7 @@ module org.example.javafxbaladity {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires javafx.media;
+    requires MaterialFX;
 
     opens org.example.javafxbaladity to javafx.fxml;
     exports org.example.javafxbaladity;

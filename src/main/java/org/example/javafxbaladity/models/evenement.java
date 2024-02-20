@@ -8,19 +8,21 @@ public class evenement {
     public evenement(){
     }
 
-    public evenement(int id,String titre, String description,String lieu, String nomContact,String emailContact,String date , boolean statut) {
+    public evenement(int id,String titre, String description,String date ,String lieu, String nomContact,String emailContact, boolean statut) {
         this.id = id;
         this.titre = titre;
         this.description = description;
+        this.date=date;
         this.lieu = lieu;
         this.nomContact = nomContact;
         this.emailContact = emailContact;
         this.statut = statut;
     }
 
-    public evenement(String titre, String description,String lieu, String nomContact,String emailContact,String date , boolean statut) {
+    public evenement(String titre, String description,String date ,String lieu, String nomContact,String emailContact, boolean statut) {
         this.titre = titre;
         this.description = description;
+        this.date=date;
         this.lieu = lieu;
         this.nomContact = nomContact;
         this.emailContact = emailContact;

@@ -11,116 +11,104 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1315.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.HomeController">
    <left>
-      <VBox prefHeight="890.0" prefWidth="281.0" spacing="30.0" styleClass="left-sidebar-left-sidebar"
-            stylesheets="@../css/style.css">
+      <VBox prefHeight="890.0" prefWidth="281.0" spacing="30.0" styleClass="left-sidebar-left-sidebar" stylesheets="@../css/style.css">
          <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="279.0" spacing="100.0">
             <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../assets/415268946_341952125380510_2075852230308134805_n.png"/>
+               <Image url="@../assets/415268946_341952125380510_2075852230308134805_n.png" />
             </ImageView>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
-            <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                    onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="left-sidebar-link"
-                    text="Home" textFill="WHITE">
+            <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="left-sidebar-link" text="Home" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/icons8-home-24.png"/>
+                     <Image url="@../assets/icons8-home-24.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="279.0">
-            <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0"
-                    mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0"
-                    styleClass="left-sidebar-users-link" text="Users" textFill="WHITE">
+            <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0" mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0" styleClass="left-sidebar-users-link" text="Users" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineUser.png"/>
+                     <Image url="@../assets/AiOutlineUser.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Reclamations" textFill="WHITE">
+            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="left-sidebar-users-link" text="Reclamations" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineReconciliation.png"/>
+                     <Image url="@../assets/AiOutlineReconciliation.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
-            <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                    onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0"
-                    styleClass="left-sidebar-users-link" text="Documents" textFill="WHITE">
+            <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="left-sidebar-users-link" text="Documents" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/IoDocumentTextOutline.png"/>
+                     <Image url="@../assets/IoDocumentTextOutline.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Events" textFill="WHITE">
+            <Button fx:id="Events_btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#OnEventsBtnClick" prefHeight="47.0" prefWidth="232.0" styleClass="left-sidebar-users-link" text="Events" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/MdEventNote.png"/>
+                     <Image url="@../assets/MdEventNote.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Projects" textFill="WHITE">
+            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="left-sidebar-users-link" text="Projects" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineProject.png"/>
+                     <Image url="@../assets/AiOutlineProject.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Associations" textFill="WHITE">
+            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="left-sidebar-users-link" text="Associations" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/IoStorefrontOutline.png"/>
+                     <Image url="@../assets/IoStorefrontOutline.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
          <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
-            <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0"
-                    prefWidth="220.0" styleClass="left-sidebar-link" text="Logout" textFill="WHITE">
+            <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="220.0" styleClass="left-sidebar-link" text="Logout" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="21.0"/>
+                  <Font name="System Bold" size="21.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineLogout.png"/>
+                     <Image url="@../assets/AiOutlineLogout.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -129,15 +117,11 @@
    </left>
    <center>
       <Pane prefHeight="629.0" prefWidth="808.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
-         <Pane layoutX="61.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="524.0" layoutY="490.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="61.0" layoutY="496.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="526.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="-2.0" prefHeight="88.0" prefWidth="1034.0" styleClass="box" stylesheets="@../css/style.css"/>
+         <Pane layoutX="61.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="524.0" layoutY="490.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="61.0" layoutY="496.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="526.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="-2.0" prefHeight="88.0" prefWidth="1034.0" styleClass="box" stylesheets="@../css/style.css" />
       </Pane>
    </center>
 </BorderPane>

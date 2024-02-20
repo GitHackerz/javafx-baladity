@@ -1,6 +1,8 @@
 package org.example.javafxbaladity.services;
 
-import models.evenement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import org.example.javafxbaladity.models.evenement;
 import org.example.javafxbaladity.interfaces.IService;
 import org.example.javafxbaladity.utils.Database;
 import java.sql.SQLException;
@@ -34,7 +36,7 @@ public class EventService implements IService<evenement> {
 
     @Override
     public void update(evenement evenement) throws SQLException {
-        String sql = "update evenement set titre = ?, description = ?, date = ? description = ?, date = ?, lieu = ?, nomContact = ?,emailContact = ?, statut = ? where id = ?";
+        String sql = "update evenement set titre = ?, description = ?, date = ?, lieu = ?, nomContact = ?,emailContact = ?, statut = ? where id = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, evenement.getTitre());
@@ -58,12 +60,12 @@ public class EventService implements IService<evenement> {
     }
 
     @Override
-    public List<evenement> readAll() throws SQLException {
+    public ObservableList<evenement> readAll() throws SQLException {
         String sql = "select * from evenement";
         Statement statement = connection.createStatement();
 
         ResultSet rs = statement.executeQuery(sql);
-        List<evenement> list = new ArrayList<>();
+        ObservableList<evenement> list = FXCollections.observableArrayList();
         while (rs.next()){
             evenement p = new evenement();
             p.setId(rs.getInt("id"));
@@ -72,6 +74,7 @@ public class EventService implements IService<evenement> {
             p.setDate(rs.getString("date"));
             p.setLieu(rs.getString("lieu"));
             p.setNomContact(rs.getString("nomContact"));
+            p.setEmailContact(rs.getString("emailContact"));
             p.setStatut(rs.getBoolean("statut"));
             list.add(p);
 
