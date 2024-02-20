@@ -38,7 +38,7 @@ public class Main extends Application {
         mediaPlayer.setOnEndOfMedia(() -> {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/login.fxml"));
-                Scene nextScene = new Scene(fxmlLoader.load(), 1098, 667);
+                Scene nextScene = new Scene(fxmlLoader.load(), 1200, 700);
 
 
                 // Fade Effect
@@ -49,12 +49,13 @@ public class Main extends Application {
                 fadeTransition.play();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
         stage.sizeToScene();
-        Scene videoScene = new Scene(root, 1098, 667);
+        Scene videoScene = new Scene(root, 1200, 700);
         stage.setScene(videoScene);
+
         stage.show();
         stage.sizeToScene();
     }
