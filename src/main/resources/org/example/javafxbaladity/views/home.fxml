@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1315.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.HomeController">
    <left>
-      <VBox prefHeight="890.0" prefWidth="281.0" spacing="30.0" styleClass="left-sidebar-left-sidebar"
-            stylesheets="@../css/style.css">
-         <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="279.0" spacing="100.0">
+      <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../css/style.css">
+         <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
             <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../assets/415268946_341952125380510_2075852230308134805_n.png"/>
+               <Image url="@../assets/415268946_341952125380510_2075852230308134805_n.png" />
             </ImageView>
          </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
+         <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+         <VBox spacing="20.0" VBox.vgrow="ALWAYS">
             <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                    onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="left-sidebar-link"
+                    onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="sidebar-link-active"
                     text="Home" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0"/>
@@ -31,13 +31,11 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="279.0">
             <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0"
                     mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0"
-                    styleClass="left-sidebar-users-link" text="Users" textFill="WHITE">
+                    styleClass="sidebar-link" text="Users" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="16.0"/>
                </font>
                <graphic>
                   <ImageView>
@@ -45,10 +43,8 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
             <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Reclamations" textFill="WHITE">
+                    prefWidth="232.0" styleClass="sidebar-link" text="Reclamations" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0"/>
                </font>
@@ -58,11 +54,9 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
             <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                    onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0"
-                    styleClass="left-sidebar-users-link" text="Documents" textFill="WHITE">
+                    onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link"
+                    text="Documents" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0"/>
                </font>
@@ -72,10 +66,8 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
             <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Events" textFill="WHITE">
+                    prefWidth="232.0" styleClass="sidebar-link" text="Events" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0"/>
                </font>
@@ -85,10 +77,8 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
             <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Projects" textFill="WHITE">
+                    prefWidth="232.0" styleClass="sidebar-link" text="Projects" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0"/>
                </font>
@@ -98,10 +88,8 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
-         <HBox alignment="TOP_CENTER" prefHeight="63.0" prefWidth="279.0">
             <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="left-sidebar-users-link" text="Associations" textFill="WHITE">
+                    prefWidth="232.0" styleClass="sidebar-link" text="Associations" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0"/>
                </font>
@@ -111,16 +99,16 @@
                   </ImageView>
                </graphic>
             </Button>
-         </HBox>
+         </VBox>
+         <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
          <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
-            <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0"
-                    prefWidth="220.0" styleClass="left-sidebar-link" text="Logout" textFill="WHITE">
+            <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="220.0" styleClass="sidebar-logout" text="Logout" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="21.0"/>
+                  <Font name="System Bold" size="21.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineLogout.png"/>
+                     <Image url="@../assets/AiOutlineLogout.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -129,15 +117,11 @@
    </left>
    <center>
       <Pane prefHeight="629.0" prefWidth="808.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
-         <Pane layoutX="61.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="524.0" layoutY="490.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="61.0" layoutY="496.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="526.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box"
-               stylesheets="@../css/style.css"/>
-         <Pane layoutX="-2.0" prefHeight="88.0" prefWidth="1034.0" styleClass="box" stylesheets="@../css/style.css"/>
+         <Pane layoutX="61.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="524.0" layoutY="490.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="61.0" layoutY="496.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="526.0" layoutY="109.0" prefHeight="368.0" prefWidth="433.0" styleClass="box" stylesheets="@../css/style.css" />
+         <Pane layoutX="-2.0" prefHeight="88.0" prefWidth="1034.0" styleClass="box" stylesheets="@../css/style.css" />
       </Pane>
    </center>
 </BorderPane>

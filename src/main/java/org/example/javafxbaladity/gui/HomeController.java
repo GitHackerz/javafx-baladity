@@ -32,8 +32,10 @@ public class HomeController {
         Parent root = fxmlLoader.load();
         Stage window = (Stage) Documents_Btn.getScene().getWindow();
         window.setScene(new Scene(root, 1098, 667));
+    }
 
-
+    public void initialize() {
+           System.out.println("Home Controller Initialized");
     }
 
 
