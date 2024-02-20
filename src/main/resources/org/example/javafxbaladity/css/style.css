@@ -31,15 +31,5 @@
 }
 .sidebar-logout:hover {
     -fx-opacity: 1;
-}
-.header{
 
-}
-.body{
-    -fx-background-color: #f9f9f9;
-}
-
-.card{
-    -fx-background-color: #fff;
-    -fx-background-radius: 10px;
 }

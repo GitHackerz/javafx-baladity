@@ -19,6 +19,8 @@ import org.example.javafxbaladity.Main;
 public class LoginController {
     @FXML
     Button SignIn_Btn;
+    int width = 1200;
+    int height = 700;
 
     public void OnSignInClicked() throws Exception {
         ProgressIndicator progressIndicator = new ProgressIndicator();
@@ -46,14 +48,14 @@ public class LoginController {
         // Timeline for the progressIndicator
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(2), event -> {
-                    window.setScene(new Scene(root, 1315, 890));
+                    window.setScene(new Scene(root, width, height));
                     fadeIn.play();
                 })
         );
 
         fadeOut.setOnFinished(event -> timeline.play());
         fadeOut.play();
-        window.setScene(new Scene(container, 1098, 667));
+        window.setScene(new Scene(container, width, height));
     }
 
 
