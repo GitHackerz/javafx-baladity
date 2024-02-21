@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,12 +15,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.ProjectController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.ProjectController">
    <left>
-      <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../css/style.css">
+      <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../../css/style.css">
          <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
             <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../assets/415268946_341952125380510_2075852230308134805_n.png" />
+               <Image url="@../../assets/415268946_341952125380510_2075852230308134805_n.png" />
             </ImageView>
          </HBox>
          <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
@@ -30,7 +31,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/icons8-home-24.png" />
+                     <Image url="@../../assets/icons8-home-24.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -40,7 +41,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineUser.png" />
+                     <Image url="@../../assets/AiOutlineUser.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -50,7 +51,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineReconciliation.png" />
+                     <Image url="@../../assets/AiOutlineReconciliation.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -60,7 +61,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/IoDocumentTextOutline.png" />
+                     <Image url="@../../assets/IoDocumentTextOutline.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -70,7 +71,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/MdEventNote.png" />
+                     <Image url="@../../assets/MdEventNote.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -80,7 +81,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineProject.png" />
+                     <Image url="@../../assets/AiOutlineProject.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -90,7 +91,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/IoStorefrontOutline.png" />
+                     <Image url="@../../assets/IoStorefrontOutline.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -103,7 +104,7 @@
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineLogout.png" />
+                     <Image url="@../../assets/AiOutlineLogout.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -116,18 +117,19 @@
             <padding>
                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
             </padding>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back, User!">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back, Emir!">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
             <Pane minWidth="-Infinity" prefHeight="79.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER" prefHeight="79.0" prefWidth="97.0" spacing="20.0" HBox.hgrow="SOMETIMES">
+            <HBox alignment="CENTER" prefHeight="79.0" prefWidth="265.0" spacing="20.0" HBox.hgrow="SOMETIMES">
+               <TextField promptText="Search ..." />
                <ImageView>
-                  <Image url="@../assets/Notif.png" />
+                  <Image url="@../../assets/Notif.png" />
                </ImageView>
                <ImageView fitHeight="44.0" fitWidth="46.0">
-                  <Image url="@../assets/user.png" />
+                  <Image url="@../../assets/user.png" />
                </ImageView>
             </HBox>
          </HBox>
@@ -194,22 +196,18 @@
                   </Text>
                </VBox>
             </HBox>
-            <VBox alignment="TOP_RIGHT" spacing="10.0">
+            <VBox alignment="TOP_RIGHT">
                <children>
-                  <Button fx:id="open_modal_btn" mnemonicParsing="false" onAction="#onOpenAddModal" styleClass="button-add" text="Add Project">
-                     <padding>
-                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-                     </padding>
-                  </Button>
+                  <Button fx:id="open_modal_btn" mnemonicParsing="false" onAction="#onOpenAddModal" styleClass="button-add" text="Add Project" />
                   <TableView fx:id="Projects_Table" onMouseClicked="#getProjectRow" prefHeight="200.0" prefWidth="200.0">
                      <columns>
                         <TableColumn fx:id="id_col" prefWidth="75.0" text="ID" />
                         <TableColumn fx:id="title_col" prefWidth="75.0" text="Title" />
-                        <TableColumn fx:id="description_col" prefWidth="216.800048828125" text="Description" />
-                        <TableColumn fx:id="date_debut_col" minWidth="0.0" prefWidth="108.79995727539062" text="Start Date" />
-                        <TableColumn fx:id="date_fin_col" prefWidth="83.99996948242188" text="End Date" />
-                        <TableColumn fx:id="statut_col" prefWidth="121.5999755859375" text="Statut" />
-                        <TableColumn fx:id="budget_col" prefWidth="134.39996337890625" text="Budget" />
+                        <TableColumn fx:id="description_col" prefWidth="75.0" text="Description" />
+                        <TableColumn fx:id="date_debut_col" prefWidth="75.0" text="Start Date" />
+                        <TableColumn fx:id="date_fin_col" prefWidth="75.0" text="End Date" />
+                        <TableColumn fx:id="statut_col" prefWidth="75.0" text="Statut" />
+                        <TableColumn fx:id="budget_col" prefWidth="75.0" text="Budget" />
                      </columns>
                   </TableView>
                </children>

@@ -1,80 +1,88 @@
 package org.example.javafxbaladity.models;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class Project {
     private int id;
-    private String title;
+    private String titre;
     private String description;
-    private String status;
+    private String statut;
     private float budget;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime date_debut;
+    private LocalDateTime date_fin;
 
-    public Project(int id, String title, String description, String status, float budget, Date startDate, Date endDate) {
+    public Project(int id, String titre, String description, String statut, float budget, LocalDateTime date_debut, LocalDateTime date_fin) {
         this.id = id;
-        this.title = title;
+        this.titre = titre;
         this.description = description;
-        this.status = status;
+        this.statut = statut;
         this.budget = budget;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
     }
-    public Project(String title, String description, String status, float budget, Date startDate, Date endDate) {
-        this.title = title;
+
+    public Project(int id, String titre, String description, String statut, LocalDateTime date_debut, LocalDateTime date_fin) {
+        this.id = id;
+        this.titre = titre;
         this.description = description;
-        this.status = status;
-        this.budget = budget;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.statut = statut;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitre() {
+        return titre;
     }
-    public void setTitle(String title) {
-        this.title = title;
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatut() {
+        return statut;
     }
-    public void setStatus(String status) {
-        this.status = status;
+
+    public void setStatut(String statut) {
+        this.statut = statut;
     }
 
     public float getBudget() {
         return budget;
     }
+
     public void setBudget(float budget) {
         this.budget = budget;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public LocalDateTime getDate_debut() {
+        return date_debut;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public void setDate_debut(LocalDateTime date_debut) {
+        this.date_debut = date_debut;
     }
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+
+    public LocalDateTime getDate_fin() {
+        return date_fin;
+    }
+
+    public void setDate_fin(LocalDateTime date_fin) {
+        this.date_fin = date_fin;
     }
 }

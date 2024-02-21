@@ -31,5 +31,49 @@
 }
 .sidebar-logout:hover {
     -fx-opacity: 1;
+}
+.body{
+    -fx-background-color: #f4f4f4;
+}
+.card{
+    -fx-background-color: #fff;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 300px;
+}
+
+.button-delete{
+    -fx-background-color: #8E1212;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 10px;
+    -fx-font-weight: bold;
+}
+
+.button-edit{
+    -fx-background-color: #CD9400;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 10px;
+    -fx-font-weight: bold;
+}
+
+.button-add{
+    -fx-background-color: "#624DE3";
+    -fx-text-fill: #fff;
+    -fx-background-radius: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 30px;
+}
+
+.button-details{
+    -fx-background-color: #0C162C;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
 
 }
+
+.alert-error{
+    -fx-background-color: #FBEDED;
+    -fx-background-radius: 10px;
+    -fx-font-weight: bold;
+}
+

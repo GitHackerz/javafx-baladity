@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="150.0" prefWidth="500.0" styleClass="alert-error" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.AlertController">
+   <children>
+      <Text fx:id="AlertText" fill="#e94a48" layoutX="54.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No project selected, please select a project to delete">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="close_alert_btn" layoutX="462.0" layoutY="14.0" onMouseClicked="#closeAlert">
+         <image>
+            <Image url="@../../assets/AiOutlineClose.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
