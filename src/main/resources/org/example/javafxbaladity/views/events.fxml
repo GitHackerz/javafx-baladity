@@ -165,14 +165,14 @@
             </HBox>
          </children>
       </VBox>
-      <Pane layoutX="280.0" layoutY="146.0" prefHeight="614.0" prefWidth="842.0">
+      <Pane layoutX="280.0" layoutY="146.0" prefHeight="741.0" prefWidth="842.0">
          <children>
             <Label layoutX="262.0" layoutY="33.0" prefHeight="58.0" prefWidth="359.0" text="Listes des evenements" textAlignment="JUSTIFY">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <MFXButton layoutX="386.0" layoutY="431.0" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #0C162C;" text="DETAILS" textFill="WHITE">
+            <MFXButton fx:id="Btn_Details" layoutX="386.0" layoutY="431.0" onAction="#DetailsClick" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #0C162C;" text="DETAILS" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font></MFXButton>
@@ -181,44 +181,75 @@
             <MFXButton fx:id="updateEvents_Btn" layoutX="218.0" layoutY="431.0" onAction="#onEventUpdateBtnClick" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #CD9400;" text="UPDATE" textFill="WHITE" />
             <MFXButton fx:id="deleteEvent_Btn" layoutX="565.0" layoutY="431.0" onAction="#onEventDeleteBtnClick" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #8E1212;" text="DELETE" />
             <MFXButton fx:id="addEvent_Btn" layoutX="627.0" layoutY="38.0" onAction="#onEventAddBtnClick" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #624DE3;" text="+ADD EVENTS" />
-            <MFXTextField layoutX="5.0" layoutY="42.0" prefHeight="48.0" prefWidth="179.0" />
+            <MFXTextField fx:id="recherche_Textfield" layoutX="5.0" layoutY="42.0" onAction="#setOnAction" prefHeight="48.0" prefWidth="179.0" />
             <ImageView layoutX="154.0" layoutY="58.0">
                <image>
                   <Image url="@../assets/akar-icons_search.png" />
                </image>
             </ImageView>
-            <Pane layoutX="358.0" layoutY="461.0" prefHeight="200.0" prefWidth="200.0" />
             <MFXPaginatedTableView fx:id="tableviewE" layoutX="6.0" layoutY="100.0" onMouseClicked="#getData" prefHeight="326.0" prefWidth="835.0" />
+            <MFXGenericDialog fx:id="genericAM" layoutX="432.0" layoutY="105.0" prefHeight="317.0" prefWidth="435.0">
+               <center>
+                  <Pane prefHeight="338.0" prefWidth="435.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="23.0" layoutY="43.0" prefHeight="25.0" prefWidth="62.0" text="Nom" />
+                        <Label layoutX="23.0" layoutY="98.0" prefHeight="25.0" prefWidth="62.0" text="Prenom" />
+                        <MFXTextField fx:id="Nom_Textfield" layoutX="186.0" layoutY="31.0" prefHeight="36.0" prefWidth="173.0" />
+                        <MFXTextField fx:id="Prenom_Textfield" layoutX="186.0" layoutY="86.0" prefHeight="36.0" prefWidth="173.0" />
+                        <Label layoutX="23.0" layoutY="163.0" prefHeight="25.0" prefWidth="62.0" text="Age" />
+                        <MFXTextField fx:id="Age_Textfield" layoutX="186.0" layoutY="151.0" prefHeight="36.0" prefWidth="173.0" />
+                        <MFXButton fx:id="BtnAjoutM" layoutX="149.0" layoutY="228.0" prefHeight="51.0" prefWidth="149.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+                     </children>
+                  </Pane>
+               </center>
+            </MFXGenericDialog>
+            <MFXGenericDialog fx:id="genericTM" layoutX="68.0" layoutY="273.0">
+               <center>
+                  <Pane prefHeight="401.0" prefWidth="760.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="231.0" layoutY="9.0" prefHeight="48.0" prefWidth="319.0" text="Liste des membres">
+                           <font>
+                              <Font name="System Bold Italic" size="36.0" />
+                           </font>
+                        </Label>
+                        <MFXButton fx:id="Btn_SuppM" layoutX="304.0" layoutY="330.0" onAction="#OnsuppMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #8E1212;" text="Supprimer" />
+                        <MFXButton fx:id="Btn_Close" layoutX="498.0" layoutY="330.0" onAction="#CloseClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #624DE3;" text="Close" />
+                        <MFXPaginatedTableView fx:id="tableviewM" layoutX="8.0" layoutY="56.0" prefHeight="176.0" prefWidth="744.0" />
+                        <MFXButton fx:id="Btn_AjouterMD" layoutX="95.0" layoutY="330.0" onAction="#AddMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+                     </children>
+                  </Pane>
+               </center>
+            </MFXGenericDialog>
+            <MFXGenericDialog fx:id="genericD" layoutX="-63.0" layoutY="-239.0" onClose="#Oncloseadd" prefHeight="711.0" prefWidth="764.0">
+               <center>
+                  <Pane fx:id="paneadd" prefHeight="633.0" prefWidth="445.0" style="-fx-background-color: white;" visible="false" BorderPane.alignment="CENTER">
+                     <children>
+                        <MFXDatePicker fx:id="Date_Textfield" layoutX="142.0" layoutY="309.0" />
+                        <MFXComboBox fx:id="Statut_Textfield" layoutX="142.0" layoutY="476.0" />
+                        <TextField fx:id="Description_TextField" layoutX="142.0" layoutY="213.0" />
+                        <TextField fx:id="Lieu_Textfield" layoutX="142.0" layoutY="263.0" />
+                        <TextField fx:id="NomContact_Textfield" layoutX="142.0" layoutY="379.0" />
+                        <TextField fx:id="Email_Textfield" layoutX="142.0" layoutY="429.0" />
+                        <Label layoutX="14.0" layoutY="316.0" prefHeight="25.0" prefWidth="93.0" text="Date" />
+                        <Label layoutX="14.0" layoutY="263.0" prefHeight="25.0" prefWidth="93.0" text="Lieu" />
+                        <Label layoutX="14.0" layoutY="213.0" prefHeight="25.0" prefWidth="93.0" text="Description" />
+                        <Label layoutX="14.0" layoutY="379.0" prefHeight="25.0" prefWidth="93.0" text="Nom contact" />
+                        <Label layoutX="14.0" layoutY="429.0" prefHeight="25.0" prefWidth="93.0" text="Email Contact" />
+                        <Label layoutX="14.0" layoutY="483.0" prefHeight="25.0" prefWidth="93.0" text="Statut" />
+                        <Label layoutX="77.0" layoutY="51.0" prefHeight="62.0" prefWidth="292.0" text="Ajouter Un Evenement" textAlignment="CENTER">
+                           <font>
+                              <Font name="Berlin Sans FB Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <MFXButton fx:id="ajouterEvents_Btn" layoutX="27.0" layoutY="563.0" onAction="#onAjouterClick" prefHeight="48.0" prefWidth="113.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+                        <Label layoutX="14.0" layoutY="158.0" prefHeight="25.0" prefWidth="69.0" text="Titre" />
+                        <TextField fx:id="Titre_Textfield" layoutX="142.0" layoutY="158.0" />
+                        <MFXButton fx:id="SaveBtn" layoutX="184.0" layoutY="563.0" onAction="#OnsaveBtnClick" prefHeight="48.0" prefWidth="110.0" style="-fx-background-color: #624DE3;" text="Save" />
+                     </children>
+                  </Pane>
+               </center>
+            </MFXGenericDialog>
          </children>
       </Pane>
-      <MFXGenericDialog fx:id="genericD" layoutX="374.0" layoutY="37.0" onClose="#Oncloseadd" prefHeight="711.0" prefWidth="764.0">
-         <center>
-            <Pane fx:id="paneadd" prefHeight="633.0" prefWidth="445.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
-               <children>
-                  <MFXDatePicker fx:id="Date_Textfield" layoutX="142.0" layoutY="309.0" />
-                  <MFXComboBox fx:id="Statut_Textfield" layoutX="142.0" layoutY="476.0" />
-                  <TextField fx:id="Description_TextField" layoutX="142.0" layoutY="213.0" />
-                  <TextField fx:id="Lieu_Textfield" layoutX="142.0" layoutY="263.0" />
-                  <TextField fx:id="NomContact_Textfield" layoutX="142.0" layoutY="379.0" />
-                  <TextField fx:id="Email_Textfield" layoutX="142.0" layoutY="429.0" />
-                  <Label layoutX="14.0" layoutY="316.0" prefHeight="25.0" prefWidth="93.0" text="Date" />
-                  <Label layoutX="14.0" layoutY="263.0" prefHeight="25.0" prefWidth="93.0" text="Lieu" />
-                  <Label layoutX="14.0" layoutY="213.0" prefHeight="25.0" prefWidth="93.0" text="Description" />
-                  <Label layoutX="14.0" layoutY="379.0" prefHeight="25.0" prefWidth="93.0" text="Nom contact" />
-                  <Label layoutX="14.0" layoutY="429.0" prefHeight="25.0" prefWidth="93.0" text="Email Contact" />
-                  <Label layoutX="14.0" layoutY="483.0" prefHeight="25.0" prefWidth="93.0" text="Statut" />
-                  <Label layoutX="77.0" layoutY="51.0" prefHeight="62.0" prefWidth="292.0" text="Ajouter Un Evenement" textAlignment="CENTER">
-                     <font>
-                        <Font name="Berlin Sans FB Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <MFXButton fx:id="ajouterEvents_Btn" layoutX="27.0" layoutY="563.0" onAction="#onAjouterClick" prefHeight="48.0" prefWidth="113.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
-                  <Label layoutX="14.0" layoutY="158.0" prefHeight="25.0" prefWidth="69.0" text="Titre" />
-                  <TextField fx:id="Titre_Textfield" layoutX="142.0" layoutY="158.0" />
-                  <MFXButton fx:id="SaveBtn" layoutX="184.0" layoutY="563.0" onAction="#OnsaveBtnClick" prefHeight="48.0" prefWidth="110.0" style="-fx-background-color: #624DE3;" text="Save" />
-               </children>
-            </Pane>
-         </center>
-      </MFXGenericDialog>
    </children>
 </Pane>

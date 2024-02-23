@@ -20,9 +20,11 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import org.example.javafxbaladity.interfaces.IService;
+import org.example.javafxbaladity.models.Membre;
 import org.example.javafxbaladity.models.evenement;
 import org.example.javafxbaladity.services.EventService;
 import org.example.javafxbaladity.utils.Database;
+import org.example.javafxbaladity.services.MembreService;
 
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -38,6 +40,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 
 
 public class EventController implements Initializable{
@@ -45,6 +50,7 @@ public class EventController implements Initializable{
     PreparedStatement st = null;
     ResultSet rs = null;
     EventService ev = new EventService();
+    MembreService ms = new MembreService();
 
     private int ide=0;
 
@@ -90,6 +96,10 @@ public class EventController implements Initializable{
     @FXML
     private MFXButton SaveBtn;
 
+    @FXML
+    private MFXTextField recherche_Textfield;
+
+
 
 
 
@@ -123,6 +133,39 @@ public class EventController implements Initializable{
 
     @FXML
     private TableColumn<evenement, String> Coltitre;
+    @FXML
+    private MFXTextField Age_Textfield;
+
+    @FXML
+    private MFXButton BtnAjoutM;
+    @FXML
+    private MFXTextField Nom_Textfield;
+
+    @FXML
+    private MFXTextField Prenom_Textfield;
+
+
+    @FXML
+    private MFXButton Btn_AjouterMD;
+
+    @FXML
+    private MFXButton Btn_Close;
+
+    @FXML
+    private MFXButton Btn_Details;
+
+    @FXML
+    private MFXButton Btn_SuppM;
+    @FXML
+    private MFXGenericDialog genericTM;
+    @FXML
+    private MFXPaginatedTableView<Membre> tableviewM;
+    @FXML
+    private MFXGenericDialog genericAM;
+
+
+
+
 
 
     private Connection connection=Database.getConnection();
@@ -132,12 +175,30 @@ public class EventController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         genericD.setVisible(false);
+        genericTM.setVisible(false);
+        genericAM.setVisible(false);
         Statut_Textfield.getItems().addAll(true, false);
         try {
             showEvenements();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        try {
+            showMembres();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        recherche_Textfield.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                String query = newValue.trim(); // Obtenez le texte de recherche et supprimez les espaces blancs
+                ObservableList<evenement> searchResults = eventService.searchEvents(query); // Recherchez les événements correspondants
+                tableviewE.setItems(searchResults); // Mettez à jour la TableView avec les résultats de la recherche
+            } catch (SQLException e) {
+                e.printStackTrace(); // Gérez les exceptions de manière appropriée
+            }
+        });
+
     }
     @FXML
     void Oncloseadd(ActionEvent event) {
@@ -253,6 +314,7 @@ public class EventController implements Initializable{
         preparedStatement.setString(6, Email_Textfield.getText());
         preparedStatement.setBoolean(7, Statut_Textfield.getValue());
         preparedStatement.executeUpdate();
+        genericD.setVisible(false);
 
         showEvenements();
 
@@ -264,6 +326,7 @@ public class EventController implements Initializable{
     void onEventDeleteBtnClick(ActionEvent event) throws SQLException{
         ev.delete(ide);
         refreshTABLEviewEvent();
+        refreshTABLEviewMembre();
 
 
     }
@@ -296,6 +359,10 @@ public class EventController implements Initializable{
 
         tableviewE.setItems(ev.readAll());
     }
+    private void refreshTABLEviewMembre() throws SQLException {
+
+        tableviewM.setItems(ms.readAll());
+    }
 
 @FXML
     public void getData(javafx.scene.input.MouseEvent mouseEvent) {
@@ -322,11 +389,110 @@ public class EventController implements Initializable{
                 Email_Textfield.getText(),
                 Boolean.parseBoolean(Statut_Textfield.getText()));
 
+        genericD.setVisible(false);
         ev.update(e);
         refreshTABLEviewEvent();
 
 
 
     }
+
+   @FXML
+    void setOnAction(ActionEvent event) {
+       recherche_Textfield.textProperty().addListener((observable, oldValue, newValue) -> {
+           try {
+               String query = newValue.trim(); // Obtenez le texte de recherche et supprimez les espaces blancs
+               ObservableList<evenement> searchResults = ev.searchEvents(query); // Recherchez les événements correspondants
+               tableviewE.setItems(searchResults); // Mettez à jour la TableView avec les résultats de la recherche
+
+           } catch (SQLException e) {
+               e.printStackTrace(); // Gérez les exceptions de manière appropriée
+           }
+       });
+       }
+
+
+    @FXML
+    void AddMClick(ActionEvent event) {
+        genericAM.setVisible(true);
+
+    }
+    @FXML
+    void CloseClick(ActionEvent event) {
+        genericTM.setVisible(false);
+
+    }
+
+    @FXML
+    void DetailsClick(ActionEvent event) {
+        genericTM.setVisible(true);
+
+    }
+    @FXML
+    void OnsuppMClick(ActionEvent event) {
+
+    }
+
+    public void showMembres() throws SQLException {
+        /*
+        ObservableList<evenement> list = ev.readAll();
+        tableview.setItems(list);
+        Colid.setCellValueFactory(new PropertyValueFactory<evenement,Integer>("id"));
+        Coltitre.setCellValueFactory(new PropertyValueFactory<evenement,String>("titre"));
+        Coldescription.setCellValueFactory(new PropertyValueFactory<evenement,String>("description"));
+       Coldate.setCellValueFactory(new PropertyValueFactory<evenement,String>("date"));
+       Collieu.setCellValueFactory(new PropertyValueFactory<evenement,String>("lieu"));
+       Colnomcontact.setCellValueFactory(new PropertyValueFactory<evenement,String>("nomContact"));
+       Colemailcontact.setCellValueFactory(new PropertyValueFactory<evenement,String>("emailContact"));
+       Colstatut.setCellValueFactory(new PropertyValueFactory<evenement, Boolean>("statut"));
+       Colstatut.setCellFactory(CheckBoxTableCell.forTableColumn(Colstatut));
+
+*/
+        MFXTableColumn<Membre> id_mbr_col = new MFXTableColumn<>("ID ", false, Comparator.comparing(Membre::getId));
+        MFXTableColumn<Membre> nom_mbr_col = new MFXTableColumn<>("nom ", false, Comparator.comparing(Membre::getNom));
+        MFXTableColumn<Membre> prenom_eve_col = new MFXTableColumn<>("prenom ", false, Comparator.comparing(Membre::getPrenom));
+        MFXTableColumn<Membre> age_mbr_col = new MFXTableColumn<>("age ", false, Comparator.comparing(Membre::getAge));
+        MFXTableColumn<Membre> event_id_mbr_col = new MFXTableColumn<>("event_id", false, Comparator.comparing(Membre::getEvent_id));
+
+        // Create CheckBox column
+
+
+
+        id_mbr_col.setRowCellFactory(device -> new MFXTableRowCell<>(Membre::getId));
+        nom_mbr_col.setRowCellFactory(device -> new MFXTableRowCell<>(Membre::getNom));
+        prenom_eve_col.setRowCellFactory(device -> new MFXTableRowCell<>(Membre::getPrenom) {{
+            setAlignment(Pos.BASELINE_CENTER);
+        }});
+        age_mbr_col.setRowCellFactory(device -> new MFXTableRowCell<>(Membre::getAge));
+        event_id_mbr_col.setRowCellFactory(device -> new MFXTableRowCell<>(Membre::getEvent_id));
+        id_mbr_col.setAlignment(Pos.BASELINE_CENTER);
+
+
+
+
+        //checkbox_col.setRowCellFactory(device -> new MFXTableRowCell<>(Document::getCheckbox));
+
+
+        // Add columns to the table
+        tableviewM.getTableColumns().addAll( id_mbr_col, nom_mbr_col, prenom_eve_col, age_mbr_col, event_id_mbr_col);
+
+        tableviewM.getFilters().addAll(
+                new IntegerFilter<>("id", Membre::getId),
+                new StringFilter<>("nom", Membre::getNom),
+                new StringFilter<>("prenom", Membre::getPrenom),
+                new IntegerFilter<>("age", Membre::getAge),
+                new IntegerFilter<>("event_id", Membre::getAge)
+
+        );
+        tableviewM.setItems(ms.readAll());
+
+    }
+
+
+
+
+
+
+
 
 }
