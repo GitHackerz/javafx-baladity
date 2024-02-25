@@ -124,5 +124,18 @@ public class EventService implements IService<evenement> {
         return list;
     }
 
+    public int getEventIdByTitle(String title) throws SQLException {
+        String sql = "SELECT id FROM evenement WHERE titre = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, title);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getInt("id");
+        } else {
+            // Gérer le cas où aucun événement n'est trouvé avec le titre donné
+            return -1; // Par exemple, retourner -1 pour indiquer que l'événement n'a pas été trouvé
+        }
+    }
+
 
 }

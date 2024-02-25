@@ -188,21 +188,6 @@
                </image>
             </ImageView>
             <MFXPaginatedTableView fx:id="tableviewE" layoutX="6.0" layoutY="100.0" onMouseClicked="#getData" prefHeight="326.0" prefWidth="835.0" />
-            <MFXGenericDialog fx:id="genericAM" layoutX="432.0" layoutY="105.0" prefHeight="317.0" prefWidth="435.0">
-               <center>
-                  <Pane prefHeight="338.0" prefWidth="435.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label layoutX="23.0" layoutY="43.0" prefHeight="25.0" prefWidth="62.0" text="Nom" />
-                        <Label layoutX="23.0" layoutY="98.0" prefHeight="25.0" prefWidth="62.0" text="Prenom" />
-                        <MFXTextField fx:id="Nom_Textfield" layoutX="186.0" layoutY="31.0" prefHeight="36.0" prefWidth="173.0" />
-                        <MFXTextField fx:id="Prenom_Textfield" layoutX="186.0" layoutY="86.0" prefHeight="36.0" prefWidth="173.0" />
-                        <Label layoutX="23.0" layoutY="163.0" prefHeight="25.0" prefWidth="62.0" text="Age" />
-                        <MFXTextField fx:id="Age_Textfield" layoutX="186.0" layoutY="151.0" prefHeight="36.0" prefWidth="173.0" />
-                        <MFXButton fx:id="BtnAjoutM" layoutX="149.0" layoutY="228.0" prefHeight="51.0" prefWidth="149.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
-                     </children>
-                  </Pane>
-               </center>
-            </MFXGenericDialog>
             <MFXGenericDialog fx:id="genericTM" layoutX="68.0" layoutY="273.0">
                <center>
                   <Pane prefHeight="401.0" prefWidth="760.0" BorderPane.alignment="CENTER">
@@ -212,17 +197,18 @@
                               <Font name="System Bold Italic" size="36.0" />
                            </font>
                         </Label>
-                        <MFXButton fx:id="Btn_SuppM" layoutX="304.0" layoutY="330.0" onAction="#OnsuppMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #8E1212;" text="Supprimer" />
-                        <MFXButton fx:id="Btn_Close" layoutX="498.0" layoutY="330.0" onAction="#CloseClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #624DE3;" text="Close" />
-                        <MFXPaginatedTableView fx:id="tableviewM" layoutX="8.0" layoutY="56.0" prefHeight="176.0" prefWidth="744.0" />
+                        <MFXButton fx:id="Btn_SuppM" layoutX="256.0" layoutY="330.0" onAction="#OnsuppMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #8E1212;" text="Supprimer" />
+                        <MFXButton fx:id="Btn_Close" layoutX="411.0" layoutY="330.0" onAction="#CloseClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #624DE3;" text="Close" />
+                        <MFXPaginatedTableView fx:id="tableviewM" layoutX="8.0" layoutY="56.0" onMouseClicked="#getDataM" prefHeight="176.0" prefWidth="744.0" />
                         <MFXButton fx:id="Btn_AjouterMD" layoutX="95.0" layoutY="330.0" onAction="#AddMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+                        <MFXButton fx:id="exportToPDF" layoutX="589.0" layoutY="330.0" onAction="#exportToPDF" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #008000;" text="Exporter PDF" />
                      </children>
                   </Pane>
                </center>
             </MFXGenericDialog>
             <MFXGenericDialog fx:id="genericD" layoutX="-63.0" layoutY="-239.0" onClose="#Oncloseadd" prefHeight="711.0" prefWidth="764.0">
                <center>
-                  <Pane fx:id="paneadd" prefHeight="633.0" prefWidth="445.0" style="-fx-background-color: white;" visible="false" BorderPane.alignment="CENTER">
+                  <Pane fx:id="paneadd" prefHeight="633.0" prefWidth="445.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                      <children>
                         <MFXDatePicker fx:id="Date_Textfield" layoutX="142.0" layoutY="309.0" />
                         <MFXComboBox fx:id="Statut_Textfield" layoutX="142.0" layoutY="476.0" />
@@ -245,6 +231,23 @@
                         <Label layoutX="14.0" layoutY="158.0" prefHeight="25.0" prefWidth="69.0" text="Titre" />
                         <TextField fx:id="Titre_Textfield" layoutX="142.0" layoutY="158.0" />
                         <MFXButton fx:id="SaveBtn" layoutX="184.0" layoutY="563.0" onAction="#OnsaveBtnClick" prefHeight="48.0" prefWidth="110.0" style="-fx-background-color: #624DE3;" text="Save" />
+                     </children>
+                  </Pane>
+               </center>
+            </MFXGenericDialog>
+            <MFXGenericDialog fx:id="genericAM" layoutX="193.0" layoutY="63.0" prefHeight="347.0" prefWidth="445.0">
+               <center>
+                  <Pane prefHeight="382.0" prefWidth="435.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="23.0" layoutY="19.0" prefHeight="25.0" prefWidth="62.0" text="Nom" />
+                        <Label layoutX="23.0" layoutY="79.0" prefHeight="25.0" prefWidth="62.0" text="Prenom" />
+                        <MFXTextField fx:id="Nom_Textfield" layoutX="186.0" layoutY="14.0" prefHeight="36.0" prefWidth="173.0" />
+                        <MFXTextField fx:id="Prenom_Textfield" layoutX="186.0" layoutY="67.0" prefHeight="36.0" prefWidth="173.0" />
+                        <Label layoutX="23.0" layoutY="126.0" prefHeight="25.0" prefWidth="62.0" text="Age" />
+                        <MFXTextField fx:id="Age_Textfield" layoutX="186.0" layoutY="127.0" prefHeight="36.0" prefWidth="173.0" />
+                        <MFXButton fx:id="BtnAjoutM" layoutX="151.0" layoutY="240.0" onAction="#OnBtnAjouM" prefHeight="51.0" prefWidth="149.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+                        <Label layoutX="23.0" layoutY="192.0" prefHeight="17.0" prefWidth="62.0" text="Events" />
+                        <MFXComboBox fx:id="Events_combo" layoutX="186.0" layoutY="189.0" prefHeight="39.0" prefWidth="163.0" />
                      </children>
                   </Pane>
                </center>

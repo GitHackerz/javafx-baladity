@@ -40,8 +40,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 
 
 
@@ -53,6 +52,7 @@ public class EventController implements Initializable{
     MembreService ms = new MembreService();
 
     private int ide=0;
+    private int idm=0;
 
 
 
@@ -163,6 +163,12 @@ public class EventController implements Initializable{
     @FXML
     private MFXGenericDialog genericAM;
 
+    @FXML
+    private MFXComboBox<String> Events_combo;
+
+    @FXML
+    private MFXButton exportToPDF;
+
 
 
 
@@ -198,6 +204,20 @@ public class EventController implements Initializable{
                 e.printStackTrace(); // Gérez les exceptions de manière appropriée
             }
         });
+        try {
+
+            List<evenement> evenements = eventService.readAll();
+            List<String> titresEvenements = new ArrayList<>();
+            for (evenement event : evenements) {
+                titresEvenements.add(event.getTitre());
+            }
+
+            // Ajouter les titres des événements à la MFXComboBox
+            Events_combo.setItems(FXCollections.observableArrayList(titresEvenements));
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez l'exception de manière appropriée
+        }
 
     }
     @FXML
@@ -429,7 +449,9 @@ public class EventController implements Initializable{
 
     }
     @FXML
-    void OnsuppMClick(ActionEvent event) {
+    void OnsuppMClick(ActionEvent event) throws SQLException {
+        ms.delete(idm);
+        refreshTABLEviewMembre();
 
     }
 
@@ -467,12 +489,6 @@ public class EventController implements Initializable{
         event_id_mbr_col.setRowCellFactory(device -> new MFXTableRowCell<>(Membre::getEvent_id));
         id_mbr_col.setAlignment(Pos.BASELINE_CENTER);
 
-
-
-
-        //checkbox_col.setRowCellFactory(device -> new MFXTableRowCell<>(Document::getCheckbox));
-
-
         // Add columns to the table
         tableviewM.getTableColumns().addAll( id_mbr_col, nom_mbr_col, prenom_eve_col, age_mbr_col, event_id_mbr_col);
 
@@ -488,11 +504,48 @@ public class EventController implements Initializable{
 
     }
 
+    @FXML
+    void OnBtnAjouM(ActionEvent event) throws SQLException{
+        String selectedEventTitle = Events_combo.getValue();
+
+        // Récupérer l'ID de l'événement sélectionné à partir de la liste des événements
+        int selectedEventId = eventService.getEventIdByTitle(selectedEventTitle);
+
+        // Créer un nouvel objet Membre avec les données saisies par l'utilisateur
+        Membre membre = new Membre(
+                Nom_Textfield.getText(),
+                Prenom_Textfield.getText(),
+                Integer.parseInt(Age_Textfield.getText()),
+                selectedEventId);
+
+        // Appeler la méthode pour ajouter le membre à la base de données
+        ms.create(membre);
+
+        // Rafraîchir la TableView des membres pour afficher le nouveau membre ajouté
+        refreshTABLEviewMembre();
+        genericAM.setVisible(false);
+
+    }
+    @FXML
+    void getDataM(MouseEvent event) {
+
+    }
 
 
+    @FXML
+    public void getDataM(javafx.scene.input.MouseEvent mouseEvent) {
+        List<Membre> Lmembre = tableviewM.getSelectionModel().getSelectedValues();
+        Membre mem = Lmembre.get(0);
+        idm = mem.getId();
+        Nom_Textfield.setText(mem.getNom());
+        Prenom_Textfield.setText(mem.getPrenom());
+        Age_Textfield.setText(Integer.toString(mem.getAge()));
+        Events_combo.setText(Integer.toString(mem.getEvent_id()));
+    }
+
+    @FXML
+    void exportToPDF(ActionEvent event) {
 
 
-
-
-
+    }
 }

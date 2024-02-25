@@ -12,6 +12,7 @@ module org.example.javafxbaladity {
     requires java.sql;
     requires javafx.media;
     requires MaterialFX;
+    requires java.desktop;
 
     opens org.example.javafxbaladity to javafx.fxml;
     exports org.example.javafxbaladity;
