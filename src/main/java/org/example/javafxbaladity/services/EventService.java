@@ -60,16 +60,16 @@ public class EventService implements IService<evenement> {
         preparedStatement.executeUpdate();
     }*/
     public void delete(int eventId) throws SQLException {
-        // 1. Récupérer tous les membres associés à l'événement
+        // Récupérer tous les membres associés à l'événement
         MembreService membreService = new MembreService();
         List<Membre> membres = membreService.getMembresByEventId(eventId);
 
-        // 2. Supprimer tous les membres associés à l'événement
+        //  Supprimer tous les membres associés à l'événement
         for (Membre membre : membres) {
             membreService.delete(membre.getId());
         }
 
-        // 3. Supprimer l'événement lui-même
+        //  Supprimer l'événement
         String req = "DELETE FROM evenement WHERE id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(req)) {
             preparedStatement.setInt(1, eventId);
@@ -132,10 +132,54 @@ public class EventService implements IService<evenement> {
         if (resultSet.next()) {
             return resultSet.getInt("id");
         } else {
-            // Gérer le cas où aucun événement n'est trouvé avec le titre donné
-            return -1; // Par exemple, retourner -1 pour indiquer que l'événement n'a pas été trouvé
+
+            return -1; // retourner -1 pour indiquer que l'événement n'a pas été trouvé
         }
     }
+
+    public boolean checkDuplicateEvent(evenement event) throws SQLException {
+        String req = "SELECT COUNT(*) FROM evenement WHERE titre = ? AND description = ? AND date = ? AND lieu = ? AND nomContact = ? AND emailContact = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(req);
+        preparedStatement.setString(1, event.getTitre());
+        preparedStatement.setString(2, event.getDescription());
+        preparedStatement.setString(3, event.getDate());
+        preparedStatement.setString(4, event.getLieu());
+        preparedStatement.setString(5, event.getNomContact());
+        preparedStatement.setString(6, event.getEmailContact());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            int count = resultSet.getInt(1);
+            return count > 0; // Si le compte est supérieur à zéro, cela signifie qu'un enregistrement similaire existe déjà
+        }
+        return false;
+    }
+
+
+
+
+
+    public List<evenement> getEventsByDate(String date) throws SQLException {
+        String sql = "SELECT * FROM evenement WHERE date = ?";
+        List<evenement> events = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, date);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    evenement event = new evenement();
+                    event.setId(resultSet.getInt("id"));
+                    event.setTitre(resultSet.getString("titre"));
+                    event.setDate(resultSet.getString("date"));
+                    event.setLieu(resultSet.getString("lieu"));
+
+                    events.add(event);
+                }
+            }
+        }
+        return events;
+    }
+
 
 
 }

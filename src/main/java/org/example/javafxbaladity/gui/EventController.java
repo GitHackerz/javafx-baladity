@@ -26,6 +26,7 @@ import org.example.javafxbaladity.services.EventService;
 import org.example.javafxbaladity.utils.Database;
 import org.example.javafxbaladity.services.MembreService;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.sql.*;
@@ -39,6 +40,18 @@ import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.print.PrinterJob;
+import javafx.scene.control.TableView;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javafx.scene.control.Label;
 
 
 
@@ -169,6 +182,36 @@ public class EventController implements Initializable{
     @FXML
     private MFXButton exportToPDF;
 
+    @FXML
+    private Label erreurNom;
+    @FXML
+    private Label erreurAge1;
+
+    @FXML
+    private Label erreurAge2;
+    @FXML
+    private Label erreurPrenom;
+    @FXML
+    private Label erreurDate;
+
+    @FXML
+    private Label erreurDesc;
+
+    @FXML
+    private Label erreurEmail1;
+
+    @FXML
+    private Label erreurEmail2;
+
+    @FXML
+    private Label erreurLieu;
+
+    @FXML
+    private Label erreurNomc;
+    @FXML
+    private Label erreurTitre;
+    @FXML
+    private Label erreurGeneral;
 
 
 
@@ -183,6 +226,19 @@ public class EventController implements Initializable{
         genericD.setVisible(false);
         genericTM.setVisible(false);
         genericAM.setVisible(false);
+        erreurNom.setVisible(false);
+        erreurPrenom.setVisible(false);
+        erreurAge2.setVisible(false);
+        erreurAge1.setVisible(false);
+        erreurTitre.setVisible(false);
+        erreurDesc.setVisible(false);
+        erreurLieu.setVisible(false);
+        erreurDate.setVisible(false);
+        erreurNomc.setVisible(false);
+        erreurEmail1.setVisible(false);
+        erreurEmail2.setVisible(false);
+        erreurGeneral.setVisible(false);
+
         Statut_Textfield.getItems().addAll(true, false);
         try {
             showEvenements();
@@ -218,6 +274,8 @@ public class EventController implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace(); // Gérez l'exception de manière appropriée
         }
+
+
 
     }
     @FXML
@@ -321,23 +379,73 @@ public class EventController implements Initializable{
         genericD.setVisible(true);
     }
     @FXML
-    void onAjouterClick(ActionEvent event) throws SQLException {
-        String req = "INSERT INTO evenement (titre, description, date, lieu, nomContact, emailContact, statut) " +
-                "VALUES (?, ?, ?, ?, ?,?,?)";
+    void onAjouterClick(ActionEvent event) {
+        try {
+            String titre = Titre_Textfield.getText();
+            String description = Description_TextField.getText();
+            String date = Date_Textfield.getText();
+            String lieu = Lieu_Textfield.getText();
+            String nomContact = NomContact_Textfield.getText();
+            String emailContact = Email_Textfield.getText();
+            boolean statut = Statut_Textfield.getValue();
 
-        PreparedStatement preparedStatement = connection.prepareStatement(req);
-        preparedStatement.setString(1, Titre_Textfield.getText());
-        preparedStatement.setString(2, Description_TextField.getText());
-        preparedStatement.setString(3, Date_Textfield.getText());
-        preparedStatement.setString(4, Lieu_Textfield.getText());
-        preparedStatement.setString(5, NomContact_Textfield.getText());
-        preparedStatement.setString(6, Email_Textfield.getText());
-        preparedStatement.setBoolean(7, Statut_Textfield.getValue());
-        preparedStatement.executeUpdate();
-        genericD.setVisible(false);
+            if (titre.isEmpty()) {
+                erreurTitre.setVisible(true);
+                return;
+            }
+            if (description.isEmpty()) {
+                erreurDesc.setVisible(true);
+                return;
+            }
+            if (lieu.isEmpty()) {
+                erreurLieu.setVisible(true);
+                return;
+            }
+            if (date.isEmpty()) {
+                erreurDate.setVisible(true);
+                return;
+            }
+            if (nomContact.isEmpty()) {
+                erreurNomc.setVisible(true);
+                return;
+            }
+            if (emailContact.isEmpty()) {
+                erreurEmail1.setVisible(true);
+                return;
+            }
+            if (!emailContact.contains("@")) {
+                erreurEmail2.setVisible(true);
+                return;
+            }
 
-        showEvenements();
+            evenement event1 = new evenement(titre, description, date, lieu, nomContact, emailContact, statut);
 
+            // Vérification de doublons
+            if (ev.checkDuplicateEvent(event1)) {
+                erreurGeneral.setVisible(true);
+                return;
+            }
+
+            ev.create(event1);
+
+
+            erreurTitre.setVisible(false);
+            erreurDesc.setVisible(false);
+            erreurLieu.setVisible(false);
+            erreurDate.setVisible(false);
+            erreurNomc.setVisible(false);
+            erreurEmail1.setVisible(false);
+            erreurEmail2.setVisible(false);
+            erreurGeneral.setVisible(false);
+
+            genericD.setVisible(false);
+            refreshTABLEviewEvent();
+        } catch (SQLException ex) {
+            // Gestion de l'exception SQL
+            ex.printStackTrace(); // Affichage de la trace d'erreur
+            // Autres actions à prendre en cas d'erreur de base de données
+            // Affichage de messages d'erreur, journalisation, etc.
+        }
     }
 
 
@@ -353,25 +461,7 @@ public class EventController implements Initializable{
 
     @FXML
    void onEventUpdateBtnClick(ActionEvent event) {
-        evenement eve = new evenement(
-                ide,
-                Titre_Textfield.getText(),
-                Description_TextField.getText(),
-                Date_Textfield.getText(),
-                Lieu_Textfield.getText(),
-                NomContact_Textfield.getText(),
-                Email_Textfield.getText(),
-                Boolean.parseBoolean(Statut_Textfield.getText())
 
-        );
-
-        try {
-            ev.update(eve);
-            genericD.setVisible(false);
-            refreshTABLEviewEvent();
-        } catch (SQLException e) {
-            e.printStackTrace(); // Gérer les exceptions de manière appropriée
-        }
         genericD.setVisible(true);
     }
 
@@ -386,8 +476,8 @@ public class EventController implements Initializable{
 
 @FXML
     public void getData(javafx.scene.input.MouseEvent mouseEvent) {
-        List<evenement> Levent = tableviewE.getSelectionModel().getSelectedValues();
-        evenement even = Levent.get(0);
+        evenement even = tableviewE.getSelectionModel().getSelectedValue();
+        //evenement even = Levent.get(0);
         ide = even.getId();
         Titre_Textfield.setText(even.getTitre());
         Description_TextField.setText(even.getDescription());
@@ -444,8 +534,9 @@ public class EventController implements Initializable{
     }
 
     @FXML
-    void DetailsClick(ActionEvent event) {
+    void DetailsClick(ActionEvent event) throws SQLException{
         genericTM.setVisible(true);
+        refreshTABLEviewEvent();
 
     }
     @FXML
@@ -497,7 +588,7 @@ public class EventController implements Initializable{
                 new StringFilter<>("nom", Membre::getNom),
                 new StringFilter<>("prenom", Membre::getPrenom),
                 new IntegerFilter<>("age", Membre::getAge),
-                new IntegerFilter<>("event_id", Membre::getAge)
+                new IntegerFilter<>("event_id", Membre::getEvent_id)
 
         );
         tableviewM.setItems(ms.readAll());
@@ -505,27 +596,64 @@ public class EventController implements Initializable{
     }
 
     @FXML
-    void OnBtnAjouM(ActionEvent event) throws SQLException{
+    void OnBtnAjouM(ActionEvent event) throws SQLException {
         String selectedEventTitle = Events_combo.getValue();
+
+        // controle de saisie
+        if (Nom_Textfield.getText().isEmpty()) {
+            erreurNom.setVisible(true);
+            return; // Sortir de la fonction
+        }
+        if (Prenom_Textfield.getText().isEmpty() ) {
+            // Afficher un message d'erreur ou gérer d'une autre manière le cas où un champ est vide
+            // ...
+            erreurPrenom.setVisible(true);
+            return;
+        }
+        if ( Age_Textfield.getText().isEmpty()) {
+
+            erreurAge1.setVisible(true);
+            return;
+        }
+
+
+        // age> 18
+        int age;
+        try {
+            age = Integer.parseInt(Age_Textfield.getText());
+            if (age < 18) {
+                erreurAge2.setVisible(true);
+
+                return; // Sortir de la fonction si l'âge est inférieur à 18
+            }
+        } catch (NumberFormatException e) {
+
+            return; //l'âge n'est pas un entier valide
+        }
 
         // Récupérer l'ID de l'événement sélectionné à partir de la liste des événements
         int selectedEventId = eventService.getEventIdByTitle(selectedEventTitle);
 
-        // Créer un nouvel objet Membre avec les données saisies par l'utilisateur
         Membre membre = new Membre(
                 Nom_Textfield.getText(),
                 Prenom_Textfield.getText(),
-                Integer.parseInt(Age_Textfield.getText()),
+                age,
                 selectedEventId);
 
-        // Appeler la méthode pour ajouter le membre à la base de données
-        ms.create(membre);
-
-        // Rafraîchir la TableView des membres pour afficher le nouveau membre ajouté
-        refreshTABLEviewMembre();
-        genericAM.setVisible(false);
-
+        try {
+            ms.create(membre);
+            refreshTABLEviewMembre();
+            genericAM.setVisible(false);
+            erreurNom.setVisible(false);
+            erreurPrenom.setVisible(false);
+            erreurAge2.setVisible(false);
+            erreurAge1.setVisible(false);
+        } catch (SQLException ex) {
+            // Gérer l'exception SQLException
+            ex.printStackTrace();
+        }
     }
+
     @FXML
     void getDataM(MouseEvent event) {
 
@@ -534,8 +662,8 @@ public class EventController implements Initializable{
 
     @FXML
     public void getDataM(javafx.scene.input.MouseEvent mouseEvent) {
-        List<Membre> Lmembre = tableviewM.getSelectionModel().getSelectedValues();
-        Membre mem = Lmembre.get(0);
+        Membre mem = tableviewM.getSelectionModel().getSelectedValue();
+        //Membre mem = Lmembre.get(0);
         idm = mem.getId();
         Nom_Textfield.setText(mem.getNom());
         Prenom_Textfield.setText(mem.getPrenom());
@@ -545,6 +673,28 @@ public class EventController implements Initializable{
 
     @FXML
     void exportToPDF(ActionEvent event) {
+        StringBuilder content = new StringBuilder();
+        // Générer le contenu à partir de la TableView
+        for (Membre membre : tableviewM.getItems()) {
+            content.append(membre.toString()).append("\n");
+        }
+
+        // Enregistrer le contenu dans un fichier texte
+        File file = new File("membres.txt");
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(content.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Imprimer le fichier texte en PDF
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null && job.showPrintDialog(tableviewM.getScene().getWindow())) {
+            boolean success = job.printPage(tableviewM);
+            if (success) {
+                job.endJob();
+            }
+        }
 
 
     }
