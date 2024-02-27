@@ -212,6 +212,8 @@ public class EventController implements Initializable{
     private Label erreurTitre;
     @FXML
     private Label erreurGeneral;
+    @FXML
+    private Label erreurDoublon;
 
 
 
@@ -238,6 +240,7 @@ public class EventController implements Initializable{
         erreurEmail1.setVisible(false);
         erreurEmail2.setVisible(false);
         erreurGeneral.setVisible(false);
+        erreurDoublon.setVisible(false);
 
         Statut_Textfield.getItems().addAll(true, false);
         try {
@@ -641,6 +644,13 @@ public class EventController implements Initializable{
                 selectedEventId);
 
         try {
+            if (ms.checkDuplicateMember(membre)) {
+                // Afficher un message d'erreur ou gérer autrement le cas où le membre existe déjà
+                // Par exemple :
+                erreurDoublon.setVisible(true);
+                return;
+            }
+
             ms.create(membre);
             refreshTABLEviewMembre();
             genericAM.setVisible(false);
@@ -648,6 +658,7 @@ public class EventController implements Initializable{
             erreurPrenom.setVisible(false);
             erreurAge2.setVisible(false);
             erreurAge1.setVisible(false);
+            erreurDoublon.setVisible(false);
         } catch (SQLException ex) {
             // Gérer l'exception SQLException
             ex.printStackTrace();

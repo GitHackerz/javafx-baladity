@@ -308,6 +308,11 @@
                               <Font name="Cambria" size="14.0" />
                            </font>
                         </Label>
+                        <Label fx:id="erreurDoublon" layoutX="134.0" layoutY="294.0" prefHeight="25.0" prefWidth="207.0" text="Cet evenement existe deja" textFill="RED">
+                           <font>
+                              <Font name="Cambria" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </center>

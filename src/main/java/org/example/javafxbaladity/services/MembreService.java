@@ -98,4 +98,22 @@ public class MembreService implements IService<Membre> {
         return membres;
     }
 
+    public boolean checkDuplicateMember(Membre membre) throws SQLException {
+        String req = "SELECT COUNT(*) FROM membre WHERE nom = ? AND prenom = ? AND age = ? AND event_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(req);
+        preparedStatement.setString(1, membre.getNom());
+        preparedStatement.setString(2, membre.getPrenom());
+        preparedStatement.setInt(3, membre.getAge());
+        preparedStatement.setInt(4, membre.getEvent_id());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            int count = resultSet.getInt(1);
+            return count > 0; // Si le compte est supérieur à zéro, cela signifie qu'un enregistrement similaire existe déjà
+        }
+        return false;
+    }
+
+
 }
