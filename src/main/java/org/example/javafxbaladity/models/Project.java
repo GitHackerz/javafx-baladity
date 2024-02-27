@@ -1,6 +1,6 @@
 package org.example.javafxbaladity.models;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class Project {
     private int id;
@@ -8,10 +8,10 @@ public class Project {
     private String description;
     private String statut;
     private float budget;
-    private LocalDateTime date_debut;
-    private LocalDateTime date_fin;
+    private Date date_debut;
+    private Date date_fin;
 
-    public Project(int id, String titre, String description, String statut, float budget, LocalDateTime date_debut, LocalDateTime date_fin) {
+    public Project(int id, String titre, String description, String statut, float budget, Date date_debut, Date date_fin) {
         this.id = id;
         this.titre = titre;
         this.description = description;
@@ -21,11 +21,11 @@ public class Project {
         this.date_fin = date_fin;
     }
 
-    public Project(int id, String titre, String description, String statut, LocalDateTime date_debut, LocalDateTime date_fin) {
-        this.id = id;
+    public Project(String titre, String description, String statut, float budget, Date date_debut, Date date_fin) {
         this.titre = titre;
         this.description = description;
         this.statut = statut;
+        this.budget = budget;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
     }
@@ -70,19 +70,19 @@ public class Project {
         this.budget = budget;
     }
 
-    public LocalDateTime getDate_debut() {
+    public Date getDate_debut() {
         return date_debut;
     }
 
-    public void setDate_debut(LocalDateTime date_debut) {
+    public void setDate_debut(Date date_debut) {
         this.date_debut = date_debut;
     }
 
-    public LocalDateTime getDate_fin() {
+    public Date getDate_fin() {
         return date_fin;
     }
 
-    public void setDate_fin(LocalDateTime date_fin) {
+    public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
     }
 }

@@ -5,13 +5,13 @@
 
 .sidebar-link {
     -fx-background-color: transparent;
+    -fx-padding: 10px 50px 10px 20px;
+
     -fx-font-size: 16px;
     -fx-font-weight: bold;
 
 }
-.sidebar-link:hover {
 
-}
 .sidebar-link-active {
     -fx-background-radius: 10px;
     -fx-padding: 10px 50px 10px 20px;
@@ -71,9 +71,22 @@
 
 }
 
+.button-statut{
+    -fx-background-color: #0C162C;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+}
+
 .alert-error{
     -fx-background-color: #FBEDED;
     -fx-background-radius: 10px;
     -fx-font-weight: bold;
+}
+
+.statut-col{
+    -fx-alignment: CENTER;
+    -fx-background-color: #baf5b8;
+    -fx-background-radius: 10px;
 }
 
