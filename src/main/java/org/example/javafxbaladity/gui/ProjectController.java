@@ -1,5 +1,6 @@
 package org.example.javafxbaladity.gui;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,16 +21,23 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.example.javafxbaladity.Main;
 import org.example.javafxbaladity.models.Project;
+import org.example.javafxbaladity.models.ProjectParticipant;
+import org.example.javafxbaladity.services.ProjectParticipantService;
 import org.example.javafxbaladity.services.ProjectService;
 import org.example.javafxbaladity.utils.Modals;
 
-import java.io.IOException;
 import java.sql.Date;
 
 public class ProjectController {
 
+    public Button participate_btn;
+    public Button tasks_btn;
+    public Button Event_Btn;
     ProjectService projectService = new ProjectService();
+    ProjectParticipantService projectParticipantService = new ProjectParticipantService();
     Project selectedProject = null;
+
+    private String userRole = "admin";
 
     @FXML
     private TableView<Project> Projects_Table;
@@ -41,62 +49,50 @@ public class ProjectController {
     private TableColumn<Project, Date> date_debut_col, date_fin_col;
 
     @FXML
-    private TableColumn<Project, String> title_col, description_col, statut_col;
-
-    @FXML
-    private TableColumn<Project, Integer> id_col;
+    private TableColumn<Project, String> title_col, description_col, statut_col, participant_col;
 
     @FXML
     private Text numOfProjects, numOfActiveProjects, numOfInactiveProjects, statut_txt;
 
     @FXML
-    private Button Home_Btn, User_Btn, Document_Btn, Project_Button, Reclamation_Btn, Association_Btn, Event_Btn, detailsProject_Btn, deleteProject_Btn, updateProject_Btn, open_modal_btn, statut_btn;
+    private Button Home_Btn, User_Btn, Document_Btn, Project_Button, Reclamation_Btn, Association_Btn, Event_Btnf, deleteProject_Btn, updateProject_Btn, open_modal_btn, statut_btn;
 
     @FXML
-    void onHomeButtonClick(ActionEvent event) throws Exception {
+    void onHomeButtonClick() throws Exception {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/home.fxml"));
         Stage stage = (Stage) Home_Btn.getScene().getWindow();
         stage.setScene(new Scene(loader.load()));
     }
 
     @FXML
-    void onUserButtonClick(ActionEvent event) {
+    void onUserButtonClick() {
 
     }
 
     @FXML
-    void onReclamationButtonClick(ActionEvent event) {
+    void onReclamationButtonClick() {
 
     }
 
     @FXML
-    void onDocumentsButtonClick(ActionEvent event) {
+    void onDocumentsButtonClick() {
 
     }
 
     @FXML
-    void onEventButtonClick(ActionEvent event) {
+    void onEventButtonClick() {
 
     }
 
     @FXML
-    void onAssociationButtonClick(ActionEvent event) {
+    void onAssociationButtonClick() {
 
     }
 
     @FXML
     void onUpdateProject(ActionEvent event) throws Exception {
         if (selectedProject == null) {
-            Stage stage = new Stage();
-            stage.setTitle("Error");
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/alert.fxml"));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setResizable(false);
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
-            stage.setX(600);
-            stage.setY(400);
+            Modals.displayError("Error occurred while updating project", "Please select a project to update");
             return;
         }
 
@@ -124,18 +120,13 @@ public class ProjectController {
     }
 
     @FXML
-    void onDeleteProject() throws IOException, Exception {
+    void onDeleteProject() throws Exception {
         if (selectedProject == null) {
-            Modals.displayError("Please select a project to delete");
+            Modals.displayError("Error occurred while deleting project", "Please select a project to delete");
             return;
         }
         projectService.delete(selectedProject.getId());
         showProjects();
-    }
-
-    @FXML
-    void onDetailsProject(ActionEvent event) {
-
     }
 
     @FXML
@@ -161,30 +152,40 @@ public class ProjectController {
     }
 
     @FXML
-    void getProjectRow(MouseEvent event) {
+    void getProjectRow() {
         selectedProject = Projects_Table.getSelectionModel().getSelectedItem();
-        statut_txt.setText("Projet (" + selectedProject.getTitre() +"): " + selectedProject.getStatut());
-        statut_btn.setDisable(false);
-        statut_btn.setText(selectedProject.getStatut().equals("active") ? "Terminer" : "Activer");
+        if (statut_txt != null) {
+            statut_txt.setText("Projet (" + selectedProject.getTitre() + "): " + selectedProject.getStatut());
+            statut_btn.setDisable(false);
+            statut_btn.setText(selectedProject.getStatut().equals("active") ? "Terminer" : "Activer");
+        }
     }
 
     public void showProjects() throws Exception {
         ObservableList<Project> projects = FXCollections.observableArrayList(projectService.readAll());
 
         Projects_Table.setItems(projects);
-        id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
         title_col.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        description_col.setCellValueFactory(new PropertyValueFactory<>("description"));
         date_debut_col.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+        description_col.setCellValueFactory(new PropertyValueFactory<>("description"));
         date_fin_col.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
         budget_col.setCellValueFactory(new PropertyValueFactory<>("budget"));
         statut_col.setCellValueFactory(new PropertyValueFactory<>("statut"));
+        participant_col.setCellValueFactory(cellData -> {
+            try {
+                Project project = cellData.getValue();
+                return projectParticipantService.readByParticipantAndProject(1, project.getId()) != null ? new ReadOnlyStringWrapper("participant") : new ReadOnlyStringWrapper("non participant");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            return null;
+        });
     }
 
     @FXML
-    void changeStatut(ActionEvent event) throws Exception {
+    void changeStatut() throws Exception {
         if (selectedProject == null) {
-            Modals.displayError("Please select a project to change its status");
+            Modals.displayError("Error occurred while changing statut", "Please select a project to change statut");
             return;
         }
 
@@ -208,7 +209,53 @@ public class ProjectController {
         numOfProjects.setText(String.valueOf(projectService.readAll().size()));
         numOfActiveProjects.setText(String.valueOf(projectService.readActiveProjects().size()));
         numOfInactiveProjects.setText(String.valueOf(projectService.readInactiveProjects().size()));
-        statut_btn.setDisable(true);
+        if (statut_btn != null)
+            statut_btn.setDisable(true);
+    }
+
+    public void onParticipate() throws Exception {
+        if (selectedProject == null) {
+            Modals.displayError("Error occurred while participating", "Please select a project to participate in");
+            return;
+        }
+        if (projectParticipantService.readByParticipantAndProject(1, selectedProject.getId()) != null) {
+            Modals.displayError("Error occurred while participating", "You have already participated in this project");
+            return;
+        }
+        projectParticipantService.create(new ProjectParticipant(selectedProject.getId(), 1));
+        Modals.displaySuccess("Success", "You have successfully participated in the project");
+
+    }
+
+
+    public void onTasksDetails() {
+    }
+
+    public void onOpenAddTacheModal(ActionEvent event) throws Exception {
+        if (selectedProject == null) {
+            Modals.displayError("Error occurred while adding task", "Please select a project to add task");
+            return;
+        }
+        BoxBlur blur = new BoxBlur(3, 3, 3);
+        Node source = (Node) event.getSource();
+        Stage primaryStage = (Stage) source.getScene().getWindow();
+
+        primaryStage.getScene().getRoot().setEffect(blur);
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/project/addTask.fxml"));
+        Parent root = loader.load();
+        AddTaskController addTaskController = loader.getController();
+        addTaskController.setProjectId(selectedProject.getId());
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+
+        stage.showAndWait();
+        showProjects();
+        primaryStage.getScene().getRoot().setEffect(null);
     }
 
 

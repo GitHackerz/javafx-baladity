@@ -63,6 +63,15 @@
     -fx-padding: 10px 30px;
 }
 
+.button-add-inline{
+    -fx-border-color: "#624DE3";
+    -fx-background-color: transparent;
+    -fx-text-fill: #624DE3;
+    -fx-border-radius: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 30px;
+}
+
 .button-details{
     -fx-background-color: #0C162C;
     -fx-text-fill: #fff;
@@ -90,3 +99,6 @@
     -fx-background-radius: 10px;
 }
 
+.label-error{
+    -fx-text-fill: #c72e2e;
+}

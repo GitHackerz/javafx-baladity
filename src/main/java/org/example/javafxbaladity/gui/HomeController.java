@@ -34,7 +34,7 @@ public class HomeController {
 
 
     public void onProjectButtonClick(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/project/project.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/project/project_as_admin.fxml"));
         Parent root = fxmlLoader.load();
         Stage window = (Stage) Project_Btn.getScene().getWindow();
         window.setScene(new Scene(root, width, height));

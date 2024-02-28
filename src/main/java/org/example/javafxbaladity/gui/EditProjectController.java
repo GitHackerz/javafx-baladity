@@ -5,8 +5,6 @@ import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
 import org.example.javafxbaladity.models.Project;
 import org.example.javafxbaladity.services.ProjectService;
 import org.example.javafxbaladity.utils.Modals;
@@ -55,12 +53,12 @@ public class EditProjectController {
         }
     }
 
-    public void onClose(MouseEvent mouseEvent) {
+    public void onClose() {
         edit_project_btn.getScene().getWindow().hide();
     }
 
 
-    public void onMinimize(MouseEvent mouseEvent) {
+    public void onMinimize() {
     }
 
     public void editProject(ActionEvent actionEvent) {
@@ -74,7 +72,7 @@ public class EditProjectController {
             projectService.update(new Project(selectedProject.getId(), title, description,"en cours", budget , date_debut, date_fin ));
         }catch (Exception e){
             System.out.println(e.getMessage());
-            Modals.displayError(e.getMessage());
+            Modals.displayError("Error occurred while updating project", "An error occurred while updating project");
         }
 
         edit_project_btn.getScene().getWindow().hide();
