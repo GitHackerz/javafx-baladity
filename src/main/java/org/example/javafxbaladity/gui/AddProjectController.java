@@ -108,7 +108,7 @@ public class AddProjectController {
         Date date_fin = Date.valueOf(date_fin_projet.getValue());
 
         try {
-            projectService.create(new Project(title, description, "en cours", budget, date_debut, date_fin));
+            projectService.create(new Project(title, description, "inactve", budget, date_debut, date_fin));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Modals.displayError("Error occurred while adding project", e.getMessage());
