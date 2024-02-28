@@ -18,4 +18,6 @@ module org.example.javafxbaladity {
     exports org.example.javafxbaladity;
     exports org.example.javafxbaladity.gui;
     opens org.example.javafxbaladity.gui to javafx.fxml;
+    exports org.example.javafxbaladity.models;
+    opens org.example.javafxbaladity.models to javafx.fxml;
 }
