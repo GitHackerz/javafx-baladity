@@ -19,83 +19,73 @@
          </HBox>
          <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
          <VBox spacing="20.0" VBox.vgrow="ALWAYS">
-            <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                    onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="sidebar-link-active"
-                    text="Home" textFill="WHITE">
+            <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="sidebar-link-active" text="Home" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/icons8-home-24.png"/>
+                     <Image url="@../assets/icons8-home-24.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0"
-                    mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0"
-                    styleClass="sidebar-link" text="Users" textFill="WHITE">
+            <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0" mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0" styleClass="sidebar-link" text="Users" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="16.0"/>
+                  <Font name="System Bold" size="16.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineUser.png"/>
+                     <Image url="@../assets/AiOutlineUser.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="sidebar-link" text="Reclamations" textFill="WHITE">
+            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Reclamations" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineReconciliation.png"/>
+                     <Image url="@../assets/AiOutlineReconciliation.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                    onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link"
-                    text="Documents" textFill="WHITE">
+            <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Documents" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/IoDocumentTextOutline.png"/>
+                     <Image url="@../assets/IoDocumentTextOutline.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="sidebar-link" text="Events" textFill="WHITE">
+            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Events" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/MdEventNote.png"/>
+                     <Image url="@../assets/MdEventNote.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="sidebar-link" text="Projects" textFill="WHITE">
+            <Button fx:id="Project_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onProjectButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Projects" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/AiOutlineProject.png"/>
+                     <Image url="@../assets/AiOutlineProject.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0"
-                    prefWidth="232.0" styleClass="sidebar-link" text="Associations" textFill="WHITE">
+            <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Associations" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="19.0"/>
+                  <Font name="System Bold" size="19.0" />
                </font>
                <graphic>
                   <ImageView>
-                     <Image url="@../assets/IoStorefrontOutline.png"/>
+                     <Image url="@../assets/IoStorefrontOutline.png" />
                   </ImageView>
                </graphic>
             </Button>
@@ -116,6 +106,8 @@
       </VBox>
    </left>
    <center>
-      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="808.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="629.0" prefWidth="808.0" style="-fx-background-color: #F6F6F6" BorderPane.alignment="CENTER">
+
+      </Pane>
    </center>
 </BorderPane>

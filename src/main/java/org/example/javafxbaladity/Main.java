@@ -58,9 +58,18 @@ public class Main extends Application {
 
         stage.show();
         stage.sizeToScene();
+
+//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/project/project_as_admin.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
+//        stage.setTitle("Project Management");
+//        stage.setScene(scene);
+//        stage.show();
+
     }
 
     public static void main(String[] args) {
         launch();
     }
+
+
 }
