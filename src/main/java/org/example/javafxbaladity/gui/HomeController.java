@@ -9,10 +9,14 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.javafxbaladity.Main;
 
+
 public class HomeController {
 
     @FXML
-    Button Users_Btn, Home_Btn, Documents_Btn, Project_Btn;
+    Button Users_Btn, Home_Btn, Documents_Btn;
+  
+    @FXML
+    private Button Events_btn;
 
     int width = 1200;
     int height = 700;
@@ -32,6 +36,14 @@ public class HomeController {
 
     }
 
+    @FXML
+    void OnEventsBtnClick(ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/events.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage window = (Stage) Events_btn.getScene().getWindow();
+        window.setScene(new Scene(root, 1098, 667));
+
+    }
 
     public void onProjectButtonClick(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/project/project_as_admin.fxml"));

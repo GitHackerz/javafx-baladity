@@ -11,6 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.HomeController">
    <left>
+
       <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../css/style.css">
          <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
             <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
@@ -107,7 +108,6 @@
    </left>
    <center>
       <Pane prefHeight="629.0" prefWidth="808.0" style="-fx-background-color: #F6F6F6" BorderPane.alignment="CENTER">
-
       </Pane>
    </center>
 </BorderPane>
