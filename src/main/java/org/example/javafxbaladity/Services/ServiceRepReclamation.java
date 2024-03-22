@@ -12,7 +12,6 @@ import java.sql.*;
 public class ServiceRepReclamation implements IServiceReclamation<Reclamation> {
 
     private Connection connection;
-    private Statement ste;
 
     public ServiceRepReclamation() {
 
@@ -21,7 +20,6 @@ public class ServiceRepReclamation implements IServiceReclamation<Reclamation> {
 
     @Override
     public void ajouter(Reclamation reclamation) throws SQLException {
-        ste = connection.createStatement();
         String req = "insert into reclamation (typeReclamation,descriptionReclamation,statutReclamation,dateReclamation) values (?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(req);
         preparedStatement.setString(1, reclamation.getTypeReclamation());
@@ -33,7 +31,6 @@ public class ServiceRepReclamation implements IServiceReclamation<Reclamation> {
 
     @Override
     public void modifier(Reclamation reclamation) throws SQLException {
-        ste = connection.createStatement();
         String sql = "update reclamation set typeReclamation = ?, descriptionReclamation = ?, statutReclamation = ?,dateReclamation = ? where idReclamation = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);

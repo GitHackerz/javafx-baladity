@@ -222,6 +222,7 @@ public class InscriptionUser implements Initializable {
 
     public void showCitoyen() {
         ObservableList<Citoyen> y = c.getCitoyenList();
+        System.out.println(y);
         tv_Citoyen_Id.setCellValueFactory(new PropertyValueFactory<Citoyen, Integer>("idCitoyen"));
         tv_Citoyen_Cin.setCellValueFactory(new PropertyValueFactory<Citoyen, Integer>("cinCitoyen"));
         tv_Citoyen_Nom.setCellValueFactory(new PropertyValueFactory<Citoyen, String>("nomCitoyen"));

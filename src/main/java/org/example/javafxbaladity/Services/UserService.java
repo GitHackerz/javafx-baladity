@@ -5,8 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import org.example.javafxbaladity.models.Citoyen;
-import org.example.javafxbaladity.utils.Database;
 import org.example.javafxbaladity.models.User;
+import org.example.javafxbaladity.utils.Database;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,9 +17,10 @@ import java.util.Base64;
 
 public class UserService {
 
-    private Connection conn;
+    private final Connection conn = Database.getConnection();
+    
     public int countusers() throws SQLException {
-        String query = "SELECT COUNT(*) AS count FROM utilisateurs";
+        String query = "SELECT COUNT(*) AS count FROM user";
         PreparedStatement statement = conn.prepareStatement(query) ;
         ResultSet resultSet = statement.executeQuery() ;
         if (resultSet.next()) {
@@ -29,7 +30,7 @@ public class UserService {
         }
     }
     public int countUsersEMP() throws SQLException {
-        String query = "SELECT COUNT(*) AS count FROM utilisateurs WHERE role = 'employe'";
+        String query = "SELECT COUNT(*) AS count FROM user WHERE role = 'employe'";
         PreparedStatement statement = conn.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
@@ -37,10 +38,6 @@ public class UserService {
         } else {
             return 0;
         }
-    }
-    public UserService() {
-        conn = Database.getConnection();
-
     }
 
     private static final int SALT_LENGTH = 16;
@@ -100,17 +97,17 @@ public class UserService {
 
             if (rs.next()) {
                 c = new Citoyen(rs.getInt("id"), rs.getInt("cin"), rs.getString("nom"),
-                        rs.getString("prenom"), rs.getString("adresse"), rs.getDate("datenaissance"), rs.getNString("genre"));
+                        rs.getString("prenom"), rs.getString("adresse"), rs.getDate("date_naissance"), rs.getNString("genre"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         } finally {
 
             try {
                 if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
 
@@ -118,20 +115,20 @@ public class UserService {
     }
 
     public boolean emailExists(String email) {
-        String query = "SELECT * FROM utilisateurs WHERE email = ?";
+        String query = "SELECT * FROM user WHERE email = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next(); // Si resultSet.next() est vrai, cela signifie qu'un enregistrement avec cet e-mail existe
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
             return false;
         }
     }
 
     public int getUserIdByEmail(String email) {
-        String query = "SELECT id FROM utilisateurs WHERE email = ?";
+        String query = "SELECT id FROM user WHERE email = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -142,13 +139,13 @@ public class UserService {
                 }
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
             return -1; // En cas d'erreur, retourne -1
         }
     }
 
     public boolean idCitoyenExists(int idCitoyen) {
-        String query = "SELECT COUNT(*) FROM utilisateurs WHERE idCitoyen = ?";
+        String query = "SELECT COUNT(*) FROM user WHERE citoyen_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setInt(1, idCitoyen);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -158,7 +155,7 @@ public class UserService {
                 }
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
         }
         return false;
     }
@@ -178,17 +175,17 @@ public class UserService {
 
             if (rs.next()) {
                 c = new Citoyen(rs.getInt("id"), rs.getInt("cin"), rs.getString("nom"),
-                        rs.getString("prenom"), rs.getString("adresse"), rs.getDate("datenaissance"), rs.getNString("genre"));
+                        rs.getString("prenom"), rs.getString("adresse"), rs.getDate("date_naissance"), rs.getNString("genre"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         } finally {
 
             try {
                 if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
 
@@ -201,7 +198,7 @@ public class UserService {
         User u = null; // Initialisation de la variable c
 
         try {
-            String query = "SELECT * FROM utilisateurs WHERE email = ?";
+            String query = "SELECT * FROM user WHERE email = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, email);
 
@@ -209,18 +206,17 @@ public class UserService {
 
             if (rs.next()) {
                 u = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"),
-                        rs.getInt("numtel"), rs.getNString("role"), rs.getString("heuredebut"), rs.getString("heurefin"), rs.getString("Image")
-                        , rs.getInt("idCitoyen"));
+                        rs.getInt("num_tel"), rs.getNString("role"), rs.getString("heure_debut"), rs.getString("heure_fin"), rs.getString("image")
+                        , rs.getInt("citoyen_id"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         } finally {
-
             try {
                 if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
         return u;
@@ -234,7 +230,7 @@ public class UserService {
         User u = null; // Initialisation de la variable c
 
         try {
-            String query = "SELECT * FROM utilisateurs WHERE id = ?";
+            String query = "SELECT * FROM user WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, x);
 
@@ -242,18 +238,18 @@ public class UserService {
 
             if (rs.next()) {
                 u = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"),
-                        rs.getInt("numtel"), rs.getNString("role"), rs.getString("heuredebut"), rs.getString("heurefin"), rs.getString("Image")
-                        , rs.getInt("idCitoyen"));
+                        rs.getInt("num_tel"), rs.getNString("role"), rs.getString("heure_debut"), rs.getString("heure_fin"), rs.getString("image")
+                        , rs.getInt("citoyen_id"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         } finally {
 
             try {
                 if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
         return u;
@@ -305,14 +301,14 @@ public class UserService {
                 idCitoyen = rs.getInt(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         } finally {
 
             try {
                 if (rs != null) rs.close();
                 if (pstmt != null) pstmt.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
 
@@ -324,7 +320,7 @@ public class UserService {
     public void ajouterUser(User u) throws SQLException, NoSuchAlgorithmException {
 
 
-        String query = "INSERT INTO utilisateurs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -349,7 +345,7 @@ public class UserService {
         ObservableList<User> x = FXCollections.observableArrayList();
 
         Connection conn = Database.getConnection();
-        String query = "select * from utilisateurs";
+        String query = "select * from user";
         Statement s1;
         ResultSet r1;
         try {
@@ -358,29 +354,29 @@ public class UserService {
             User u;
             while (r1.next()) {
                 u = new User(r1.getInt("id"), r1.getString("email"), r1.getString("password"),
-                        r1.getInt("numtel"), r1.getNString("role"), r1.getString("heuredebut"), r1.getString("heurefin"),
-                        r1.getString("Image")
-                        , r1.getInt("idCitoyen"));
+                        r1.getInt("num_tel"), r1.getNString("role"), r1.getString("heure_debut"), r1.getString("heure_fin"),
+                        r1.getString("image")
+                        , r1.getInt("citoyen_id"));
                 x.add(u);
 
 
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
 
         }
         return x;
 
     }
 
-    public void updateEmployee(int id, String role, String heureDebut, String heureFin) {
-        String query = "UPDATE utilisateurs SET role = ?, heuredebut = ?, heurefin = ? WHERE id = ?";
+    public void updateEmployee(int id, String role, String heure_debut, String heure_fin) {
+        String query = "UPDATE user SET role = ?, heure_debut = ?, heure_fin = ? WHERE id = ?";
 
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, role);
-            preparedStatement.setString(2, heureDebut);
-            preparedStatement.setString(3, heureFin);
+            preparedStatement.setString(2, heure_debut);
+            preparedStatement.setString(3, heure_fin);
             preparedStatement.setInt(4, id);
 
             int rowsAffected = preparedStatement.executeUpdate();
@@ -398,7 +394,7 @@ public class UserService {
                 alert.showAndWait();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
 
 
@@ -406,7 +402,7 @@ public class UserService {
 
     public ObservableList<User> getEmployeList() throws SQLException {
         ObservableList<User> employees = FXCollections.observableArrayList();
-        String query = "SELECT * FROM utilisateurs WHERE role = ?";
+        String query = "SELECT * FROM user WHERE role = ?";
 
         Connection conn = Database.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(query);
@@ -418,12 +414,12 @@ public class UserService {
                     rs.getInt("id"),
                     rs.getString("email"),
                     rs.getString("password"),
-                    rs.getInt("numtel"),
+                    rs.getInt("num_tel"),
                     rs.getString("role"),
-                    rs.getString("heuredebut"),
-                    rs.getString("heurefin"),
-                    rs.getString("Image"),
-                    rs.getInt("idCitoyen"));
+                    rs.getString("heure_debut"),
+                    rs.getString("heure_fin"),
+                    rs.getString("image"),
+                    rs.getInt("citoyen_id"));
 
             employees.add(user);
         }
@@ -441,7 +437,7 @@ public class UserService {
     }
 
     public boolean authenticateUser(String username, String password) {
-        String query = "SELECT * FROM utilisateurs WHERE email = ? AND password = ?";
+        String query = "SELECT * FROM user WHERE email = ? AND password = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, username);
             statement.setString(2, hashPassword2(password));
@@ -449,17 +445,17 @@ public class UserService {
                 return resultSet.next(); // If a row is found, the user is authenticated
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
             return false;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
             return false;
         }
     }
 
 
     public boolean validerPassword(int id, String password) {
-        String query = "SELECT * FROM utilisateurs WHERE password = ? AND id = ?";
+        String query = "SELECT * FROM user WHERE password = ? AND id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, hashPassword2(password));
             statement.setInt(2, id);
@@ -476,12 +472,12 @@ public class UserService {
                 return isValid;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
             // Show an alert for SQL exception
             showErrorAlert("SQL Error", "An error occurred while validating the password.");
             return false;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
             // Show a generic alert for other exceptions
             showErrorAlert("Error", "An unexpected error occurred.");
             return false;
@@ -497,7 +493,7 @@ public class UserService {
     }
 
     public void modifyPassword(int id, String password) {
-        String query = "UPDATE utilisateurs SET password = ? WHERE id = ?";
+        String query = "UPDATE user SET password = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, hashPassword2(password));
@@ -518,7 +514,7 @@ public class UserService {
                 alert.showAndWait();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             // Handle SQLException appropriately
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
@@ -526,7 +522,7 @@ public class UserService {
     }
 
     public void modify(User u) throws SQLException {
-        String query = "UPDATE utilisateurs SET email = ?, password = ?, numtel = ?, role = ?, heuredebut = ?, heurefin = ?, Image = ?, idCitoyen = ? WHERE id = ?";
+        String query = "UPDATE user SET email = ?, password = ?, num_tel = ?, role = ?, heure_debut = ?, heure_fin = ?, image = ?, citoyen_id = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, u.getEmail());
@@ -555,7 +551,7 @@ public class UserService {
                 alert.showAndWait();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -563,7 +559,7 @@ public class UserService {
     public void SupprimerUser(int id) throws SQLException {
 
 
-        String query = "DELETE FROM utilisateurs where(id =" + id + ")";
+        String query = "DELETE FROM user where(id =" + id + ")";
         Statement s = conn.createStatement();
         s.executeUpdate(query);
 

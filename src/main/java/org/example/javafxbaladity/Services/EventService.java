@@ -21,8 +21,7 @@ public class EventService implements IService<evenement> {
 
     @Override
     public void create(evenement evenement) throws SQLException {
-        String req = "INSERT INTO evenement (titre, description, date, lieu, nom_contact,email_contact,statut) " +
-                "VALUES (?, ?, ?, ?, ?,?,?)";
+        String req = "INSERT INTO evenement (titre, description, date, lieu, nom_contact,email_contact,statut) VALUES (?, ?, ?, ?, ?,?,?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(req);
         preparedStatement.setString(1, evenement.getTitre());
@@ -58,12 +57,6 @@ public class EventService implements IService<evenement> {
     }
 
     @Override
-   /* public void delete(int id) throws SQLException {
-        String req = "DELETE FROM `evenement` WHERE id=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(req);
-        preparedStatement.setInt(1,id);
-        preparedStatement.executeUpdate();
-    }*/
     public void delete(int eventId) throws SQLException {
         // Récupérer tous les membres associés à l'événement
         MembreService membreService = new MembreService();
@@ -138,7 +131,7 @@ public class EventService implements IService<evenement> {
             return resultSet.getInt("id");
         } else {
 
-            return -1; // retourner -1 pour indiquer que l'événement n'a pas été trouvé
+            return -1;
         }
     }
 
@@ -156,7 +149,7 @@ public class EventService implements IService<evenement> {
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             int count = resultSet.getInt(1);
-            return count > 0; // Si le compte est supérieur à zéro, cela signifie qu'un enregistrement similaire existe déjà
+            return count > 0;
         }
         return false;
     }
@@ -186,19 +179,15 @@ public class EventService implements IService<evenement> {
     public List<evenement> getTodayEvents() throws SQLException {
         List<evenement> events = new ArrayList<>();
         try {
-            // Obtenir la date d'aujourd'hui
             LocalDate today = LocalDate.now();
 
-            // Formatter la date d'aujourd'hui dans le format "3 mars 2024"
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", new Locale("fr"));
             String formattedToday = today.format(formatter);
 
-            // Récupérer les événements pour aujourd'hui depuis la base de données
             events = getEventsByDate(formattedToday);
         } catch (SQLException e) {
-            // Gérer l'exception correctement dans votre application
             e.printStackTrace();
-            throw e; // Vous pouvez choisir de relancer l'exception ou la traiter différemment ici
+            throw e;
         }
         return events;
     }
@@ -211,7 +200,7 @@ public class EventService implements IService<evenement> {
         if (resultSet.next()) {
             return resultSet.getString("titre");
         } else {
-            return null; // Retourner null pour indiquer que l'événement n'a pas été trouvé
+            return null;
         }
     }
 

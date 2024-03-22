@@ -4,7 +4,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.example.javafxbaladity.Services.CitoyenService;
@@ -19,7 +18,6 @@ import org.example.javafxbaladity.utils.Modals;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddTaskController {
@@ -111,14 +109,6 @@ public class AddTaskController {
     @FXML
     void onClose() {
         add_task_btn.getScene().getWindow().hide();
-    }
-
-    @FXML
-    void onMinimize(ActionEvent event) {
-    }
-
-    public int getProjectId() {
-        return project_id;
     }
 
     public void setProjectId(int project_id) {

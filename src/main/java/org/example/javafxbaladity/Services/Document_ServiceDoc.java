@@ -8,8 +8,6 @@ import org.example.javafxbaladity.utils.Database;
 
 import java.sql.*;
 
-
-//preapredstatement : better for large data --> optimised
 public class Document_ServiceDoc implements IServiceDoc<Document> {
     private Connection conn;
     private Statement ste;
@@ -23,8 +21,7 @@ public class Document_ServiceDoc implements IServiceDoc<Document> {
         ste = conn.createStatement();
         //String req = "INSERT INTO test1 (nom_2) VALUES ("+test1.getNom_1()+")";
 
-        String req = "INSERT INTO documents (type_doc, statut_doc, date_emission_doc, date_expiration_doc, estarchive) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String req = "INSERT INTO documents (type_doc, statut_doc, date_emission_doc, date_expiration_doc, estarchive) VALUES (?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = conn.prepareStatement(req);
         preparedStatement.setString(1, document.getType_doc());
@@ -40,8 +37,7 @@ public class Document_ServiceDoc implements IServiceDoc<Document> {
     public void modifier(Document document) throws SQLException {
 
         ste = conn.createStatement();
-        String req = "UPDATE documents SET type_doc=? ,statut_doc = ?, date_emission_doc = ?, date_expiration_doc = ?, estarchive = ? " +
-                "WHERE id_doc = ?";
+        String req = "UPDATE documents SET type_doc=? ,statut_doc = ?, date_emission_doc = ?, date_expiration_doc = ?, estarchive = ? WHERE id_doc = ?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(req);
         preparedStatement.setString(1, document.getType_doc());
@@ -71,9 +67,7 @@ public class Document_ServiceDoc implements IServiceDoc<Document> {
             p.setId_doc(rs.getInt("id_doc"));
             list.add(p);
         }
-       if(list.isEmpty())
-           return false;
-       return true;
+        return !list.isEmpty();
     }
 
 
@@ -108,8 +102,7 @@ public class Document_ServiceDoc implements IServiceDoc<Document> {
         ResultSet rs = statement.executeQuery(sql);
         ObservableList<Document> list = FXCollections.observableArrayList();
         while (rs.next()){
-            if(!rs.getBoolean("estarchive")){  //display only the visible docs
-
+            if(!rs.getBoolean("estarchive")){
                 Document p = new Document();
                 p.setId_doc(rs.getInt("id_doc"));
                 p.setType_doc(rs.getString("type_doc"));
@@ -130,7 +123,7 @@ public class Document_ServiceDoc implements IServiceDoc<Document> {
         String sql = "select COUNT(*) as nbDocs from documents";
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(sql);
-         // Extracting the result value
+
         if (rs.next()) {
             String nbDocs = rs.getString("nbDocs");
             return nbDocs;

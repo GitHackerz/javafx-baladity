@@ -36,15 +36,14 @@ public class LoginController {
     @FXML
     private TextField tf_CheckPasswordUser;
 
-    CitoyenService c = new CitoyenService() ;
-    UserService u = new UserService() ;
-    int sessionUserId ;
-    String sessionUsernom ;
-    String sessionUserPrenom ;
+    CitoyenService c = new CitoyenService();
+    UserService u = new UserService();
+    int sessionUserId;
+    String sessionUsernom;
+    String sessionUserPrenom;
     String sessionUserRole;
 
-    public void OnSignupBtn() throws Exception
-    {
+    public void OnSignupBtn() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/inscription2.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -76,14 +75,11 @@ public class LoginController {
     public void OnSignInClicked() throws Exception {
 
 
-        if(u.authenticateUser(tf_CheckEmailUser.getText(),tf_CheckPasswordUser.getText())) {
+        if (u.authenticateUser(tf_CheckEmailUser.getText(), tf_CheckPasswordUser.getText())) {
 
 
-            User u1 = new User();
-            u1 = u.HetUser(tf_CheckEmailUser.getText());
-            Citoyen c1 = new Citoyen();
-            c1 = u.HetCitoyen(u1.getIdCitoyen());
-
+            User u1 =  u.HetUser(tf_CheckEmailUser.getText());
+            Citoyen c1 = u.HetCitoyen(u1.getIdCitoyen());
 
             UserSession z = UserSession.getInstace(u1.getId(), c1.getNomCitoyen(), c1.getPrenomCitoyen(), u1.getRole());
             sessionUserId = z.getUserId();
@@ -93,49 +89,45 @@ public class LoginController {
             ApplicationContext.getInstance().setUserSession(z);
             System.out.println(sessionUserRole);
 
-            sendSMS("+21692510826", "salut cava" + " " + sessionUsernom + "/ rak conectit");
-            System.out.println(z);
-            if(sessionUserRole.equals("employe") || sessionUserRole.equals("admin"))
-            {
+//            sendSMS("+21692510826", "salut cava" + " " + sessionUsernom + "/ rak conectit");
 
+            if (sessionUserRole.equals("employe") || sessionUserRole.equals("admin")) {
+                MFXProgressSpinner progressIndicator = new MFXProgressSpinner();
+                progressIndicator.setPrefSize(70, 70);
+                progressIndicator.setStyle("-fx-progress-color: #0C162C;");
 
-            MFXProgressSpinner progressIndicator = new MFXProgressSpinner();
-            progressIndicator.setPrefSize(70, 70);
-            progressIndicator.setStyle("-fx-progress-color: #0C162C;");
+                // Label loadingLabel = new Label("Loading");
+                //loadingLabel.setStyle("-fx-text-fill: #0C162C; -fx-font-family: Inter; -fx-font-weight: bold;");
 
-            // Label loadingLabel = new Label("Loading");
-            //loadingLabel.setStyle("-fx-text-fill: #0C162C; -fx-font-family: Inter; -fx-font-weight: bold;");
+                // Vbox contains ProgressIndic and Loading text
+                VBox container = new VBox(progressIndicator);
+                container.setAlignment(Pos.CENTER); // Center align the content
 
-            // Vbox contains ProgressIndic and Loading text
-            VBox container = new VBox(progressIndicator);
-            container.setAlignment(Pos.CENTER); // Center align the content
+                Stage window = (Stage) SignIn_Btn.getScene().getWindow();
+                FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), window.getScene().getRoot());
+                fadeOut.setFromValue(1.0);
+                fadeOut.setToValue(0.0);
 
-            Stage window = (Stage) SignIn_Btn.getScene().getWindow();
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), window.getScene().getRoot());
-            fadeOut.setFromValue(1.0);
-            fadeOut.setToValue(0.0);
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/home.fxml"));
+                Parent root = fxmlLoader.load();
+                FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), root);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/home.fxml"));
-            Parent root = fxmlLoader.load();
-            FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), root);
-            fadeIn.setFromValue(0.0);
-            fadeIn.setToValue(1.0);
+                // Timeline for the progressIndicator
+                Timeline timeline = new Timeline(
+                        new KeyFrame(Duration.seconds(0.5), event -> {
+                            window.setScene(new Scene(root, width, height));
+                            fadeIn.play();
+                        })
+                );
 
-            // Timeline for the progressIndicator
-            Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(0.5), event -> {
-                        window.setScene(new Scene(root, width, height));
-                        fadeIn.play();
-                    })
-            );
-
-            fadeOut.setOnFinished(event -> timeline.play());
-            fadeOut.play();
-            window.setScene(new Scene(container, width, height));
+                fadeOut.setOnFinished(event -> timeline.play());
+                fadeOut.play();
+                window.setScene(new Scene(container, width, height));
+            }
         }
-        }
-        if(sessionUserRole.equals("user"))
-        {
+        if (sessionUserRole.equals("user")) {
 
             MFXProgressSpinner progressIndicator = new MFXProgressSpinner();
             progressIndicator.setPrefSize(70, 70);
@@ -172,8 +164,7 @@ public class LoginController {
             window.setScene(new Scene(container, width, height));
 
         }
-        if (!u.authenticateUser(tf_CheckEmailUser.getText(),tf_CheckPasswordUser.getText()))
-        {
+        if (!u.authenticateUser(tf_CheckEmailUser.getText(), tf_CheckPasswordUser.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Authentication Failed");
             alert.setHeaderText(null);
@@ -181,8 +172,10 @@ public class LoginController {
             alert.showAndWait();
         }
     }
+
     @FXML
     private Button onsighnUP_BTN;
+
     public void onSignup() throws Exception {
         MFXProgressSpinner progressIndicator = new MFXProgressSpinner();
         progressIndicator.setPrefSize(70, 70);
@@ -218,6 +211,7 @@ public class LoginController {
         fadeOut.play();
         window.setScene(new Scene(container, width, height));
     }
+
     public void Forgetpass() throws Exception {
         MFXProgressSpinner progressIndicator = new MFXProgressSpinner();
         progressIndicator.setPrefSize(70, 70);
@@ -253,7 +247,6 @@ public class LoginController {
         fadeOut.play();
         window.setScene(new Scene(container, width, height));
     }
-
 
 
 }

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CitoyenService {
-    private Connection conn;
+    private final Connection conn;
 
 
     public CitoyenService() {
@@ -32,7 +32,7 @@ public class CitoyenService {
             Citoyen c;
             while (r1.next()) {
                 c = new Citoyen(r1.getInt("id"), r1.getInt("cin"), r1.getString("nom"),
-                        r1.getString("prenom"), r1.getNString("adresse"), r1.getDate("datenaissance"), r1.getString("genre"));
+                        r1.getString("prenom"), r1.getNString("adresse"), r1.getDate("date_naissance"), r1.getString("genre"));
                 x.add(c);
 
 
@@ -67,7 +67,7 @@ public class CitoyenService {
     }
     public static Map<Integer, Map<String, Integer>> getGenderStatisticsOverTime() {
         Map<Integer, Map<String, Integer>> stats = new HashMap<>();
-        String query = "SELECT YEAR(datenaissance) as year, genre, COUNT(*) as count FROM citoyen GROUP BY year, genre ORDER BY year";
+        String query = "SELECT YEAR(date_naissance) as year, genre, COUNT(*) as count FROM citoyen GROUP BY year, genre ORDER BY year";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -114,7 +114,7 @@ public class CitoyenService {
             String nomCitoyen = resultSet.getString("nom");
             String prenomCitoyen = resultSet.getString("prenom");
             String adresseCitoyen = resultSet.getString("adresse");
-            Date dateNCitoyen = resultSet.getDate("datenaissance");
+            Date dateNCitoyen = resultSet.getDate("date_naissance");
             String genre = resultSet.getString("genre");
 
             // Create a new Citoyen object
@@ -197,7 +197,7 @@ public class CitoyenService {
     }
 
     private boolean userExists(int id) throws SQLException {
-        String query = "SELECT * FROM utilisateurs WHERE idCitoyen = ?";
+        String query = "SELECT * FROM user WHERE citoyen_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -207,7 +207,7 @@ public class CitoyenService {
     }
 
     private void supprimerUtilisateur(int id) throws SQLException {
-        String query = "DELETE FROM utilisateurs WHERE idCitoyen = ?";
+        String query = "DELETE FROM user WHERE citoyen_id = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -223,15 +223,15 @@ public class CitoyenService {
 
     }
 
-    public void modify(int id, int cin, String nom, String prenom, String adresse, Date datenaissance, String genre) throws SQLException {
-        String query = "UPDATE citoyen SET cin = ?, nom = ?, prenom = ?, adresse = ?, datenaissance = ?, genre = ? WHERE id = ?";
+    public void modify(int id, int cin, String nom, String prenom, String adresse, Date date_naissance, String genre) throws SQLException {
+        String query = "UPDATE citoyen SET cin = ?, nom = ?, prenom = ?, adresse = ?, date_naissance = ?, genre = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setInt(1, cin);
             preparedStatement.setString(2, nom);
             preparedStatement.setString(3, prenom);
             preparedStatement.setString(4, adresse);
-            preparedStatement.setDate(5, datenaissance);
+            preparedStatement.setDate(5, date_naissance);
             preparedStatement.setString(6, genre);
             preparedStatement.setInt(7, id);
 

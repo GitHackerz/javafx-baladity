@@ -22,7 +22,7 @@ public class MembreService implements IService<Membre> {
 
     @Override
     public void create(Membre membre) throws SQLException {
-        String req = "INSERT INTO membre (nom,prenom,age,event_id)" + "VALUES (?,?,?,?)";
+        String req = "INSERT INTO membre (nom,prenom,age,event_id) VALUES (?,?,?,?)";
         PreparedStatement preparedStatement= connection.prepareStatement(req);
         preparedStatement.setString(1, membre.getNom());
         preparedStatement.setString(2,membre.getPrenom());

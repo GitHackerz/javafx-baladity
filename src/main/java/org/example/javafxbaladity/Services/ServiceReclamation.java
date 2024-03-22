@@ -7,22 +7,15 @@ import org.example.javafxbaladity.interfaces.IService;
 import org.example.javafxbaladity.models.Reclamation;
 import org.example.javafxbaladity.utils.Database;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class ServiceReclamation  {
 
-    private Connection connection;
-    private Statement ste;
-
-    public ServiceReclamation() {
-
-        connection = Database.getConnection();
-    }
-
+    private final Connection connection = Database.getConnection();
 
     public void ajouter(Reclamation reclamation) throws SQLException {
-        ste = connection.createStatement();
         String req = "insert into reclamation (typeReclamation,descriptionReclamation,statutReclamation,dateReclamation) values (?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(req);
         preparedStatement.setString(1, reclamation.getTypeReclamation());
@@ -34,7 +27,6 @@ public class ServiceReclamation  {
 
 
     public void modifier(Reclamation reclamation) throws SQLException {
-        ste = connection.createStatement();
         String sql = "update reclamation set typeReclamation = ?, descriptionReclamation = ?, statutReclamation = ?,dateReclamation = ? where idReclamation = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);

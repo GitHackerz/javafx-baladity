@@ -39,8 +39,8 @@ import java.util.Comparator;
 
 public class AssociationController  {
 
-    private  AssociationHistoryService associationHistoryService = new AssociationHistoryService();
-    private  AssociationService assocservice = new AssociationService();
+    private final AssociationHistoryService associationHistoryService = new AssociationHistoryService();
+    private final AssociationService assocservice = new AssociationService();
 
     String floatRegex = "[+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?";
     private int nbLines = 0;
@@ -48,7 +48,6 @@ public class AssociationController  {
     @FXML
     private Button Home_Btn, Users_Btn, Documents_Btn, Association_btn, Project_Btn, btn_pdf, History_Btn;
     private Association selectedAssociation = null;
-    private WebView webView;
     private WebEngine webEngine;
     @FXML
     private MFXPaginatedTableView<Association> table;
@@ -165,7 +164,7 @@ public class AssociationController  {
 
     @FXML
     void showMap() {
-        webView = new WebView();
+        WebView webView = new WebView();
         webEngine = webView.getEngine();
         webEngine.load(Main.class.getResource("Maps.html").toExternalForm());
         addMarkers();

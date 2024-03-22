@@ -65,13 +65,11 @@ public class AssociationHistoryController {
         id_col.setRowCellFactory(device -> new MFXTableRowCell<>(AssociationHistory::getId));
         title_col.setRowCellFactory(device -> new MFXTableRowCell<>(AssociationHistory::getTitle));
         description_col.setRowCellFactory(device -> new MFXTableRowCell<>(AssociationHistory::getDescription));
-//        association_col.setRowCellFactory(device -> new MFXTableRowCell<>(AssociationHistory::getAssociation));
 
         description_col.setMinWidth(500);
         table.getFilters().addAll(
                 new StringFilter<>("Title", AssociationHistory::getTitle),
                 new StringFilter<>("statut", AssociationHistory::getDescription)
-//                new StringFilter<>("adresse", AssociationHistory::getAssociation)
         );
         // Add columns to the table
         table.getTableColumns().addAll(title_col, description_col);

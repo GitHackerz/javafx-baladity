@@ -4,16 +4,12 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import org.example.javafxbaladity.Services.EventService;
 import org.example.javafxbaladity.models.evenement;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,24 +18,7 @@ import java.util.Locale;
 public class AddEventController {
     evenement e = EventController.selectedEvent;
     EventService ev = new EventService();
-    private int ide = e.getId();
-    private evenement selectedEvent;
-
-    public int getIde() {
-        return ide;
-    }
-
-    public void setIde(int ide) {
-        this.ide = ide;
-    }
-
-    public evenement getSelectedEvent() {
-        return selectedEvent;
-    }
-
-    public void setSelectedEvent(evenement selectedEvent) {
-        this.selectedEvent = selectedEvent;
-    }
+    private final int ide = e.getId();
 
     @FXML
     private MFXDatePicker Date_Textfield;
@@ -60,10 +39,7 @@ public class AddEventController {
     private MFXGenericDialog genericD;
 
     @FXML
-    private Pane paneadd;
-
-    @FXML
-    public void onClose(MouseEvent mouseEvent) {
+    public void onClose() {
         genericD.getScene().getWindow().hide();
     }
 
@@ -81,7 +57,7 @@ public class AddEventController {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) throws SQLException {
+    void onSaveBtnClick() throws SQLException {
         evenement e = new evenement(ide, Titre_Textfield.getText(),
                 Description_TextField.getText(),
                 Date_Textfield.getText(),
@@ -90,15 +66,13 @@ public class AddEventController {
                 Email_Textfield.getText(),
                 Boolean.parseBoolean(Statut_Textfield.getText()));
 
-        System.out.println(e);
-        //genericD.setVisible(false);
         SaveBtn.getScene().getWindow().hide();
 
         ev.update(e);
     }
 
     @FXML
-    void onAjouterClick(ActionEvent event) {
+    void onAjouterClick() {
         try {
             String titre = Titre_Textfield.getText();
             String description = Description_TextField.getText();
@@ -142,7 +116,6 @@ public class AddEventController {
             }
 
             evenement event1 = new evenement(titre, description, date, lieu, nomContact, emailContact, statut);
-            System.out.println(event1);
             if (ev.checkDuplicateEvent(event1)) {
                 erreurGeneral.setText("Error");
                 return;

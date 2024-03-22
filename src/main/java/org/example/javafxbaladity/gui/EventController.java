@@ -49,7 +49,7 @@ import java.util.ResourceBundle;
 
 public class EventController implements Initializable {
     MembreService ms = new MembreService();
-    public static evenement selectedEvent;
+    public static evenement selectedEvent = new evenement();
     int SCREEN_WIDTH = 1200;
     int SCREEN_HEIGHT = 700;
 
@@ -255,8 +255,8 @@ public class EventController implements Initializable {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/events/addEvent.fxml"));
         Parent root = loader.load();
 
-        AddEventController controller = loader.getController();
-        controller.setSelectedEvent(selectedEvent);
+//        AddEventController controller = loader.getController();
+//        controller.setSelectedEvent(selectedEvent);
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -287,8 +287,8 @@ public class EventController implements Initializable {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/events/addEvent.fxml"));
         Parent root = loader.load();
 
-        AddEventController controller = loader.getController();
-        controller.setSelectedEvent(selectedEvent);
+//        AddEventController controller = loader.getController();
+//        controller.setSelectedEvent(selectedEvent);
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

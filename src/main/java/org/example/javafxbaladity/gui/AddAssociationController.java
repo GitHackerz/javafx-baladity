@@ -7,13 +7,12 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import org.example.javafxbaladity.models.Association;
-import org.example.javafxbaladity.Services.AssociationHistoryService;
 import org.example.javafxbaladity.Services.AssociationService;
+import org.example.javafxbaladity.models.Association;
 
 public class AddAssociationController {
     private final AssociationService associationService = new AssociationService();
-    private final AssociationHistoryService associationHistoryService = new AssociationHistoryService();
+
     @FXML
     public MFXComboBox<String> adresse_association;
 
@@ -28,9 +27,6 @@ public class AddAssociationController {
 
     @FXML
     private Label caisse_association_error;
-
-    @FXML
-    private Label description_projet_error1;
 
     @FXML
     private MFXTextField nom_association;
