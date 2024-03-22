@@ -1,5 +1,7 @@
-package org.example.javafxbaladity.services;
+package org.example.javafxbaladity.Services;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.example.javafxbaladity.interfaces.IService;
 import org.example.javafxbaladity.models.Project;
 import org.example.javafxbaladity.utils.Database;
@@ -7,6 +9,7 @@ import org.example.javafxbaladity.utils.Database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +17,7 @@ public class ProjectService implements IService<Project> {
     Connection connection = Database.getConnection();
 
     @Override
-    public void create(Project project) throws Exception {
+    public void create(Project project) throws SQLException {
         String query = "INSERT INTO projet (titre, description, statut, budget, date_debut, date_fin) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, project.getTitre());
@@ -27,7 +30,7 @@ public class ProjectService implements IService<Project> {
     }
 
     @Override
-    public Project read(int id) throws Exception {
+    public Project read(int id) throws SQLException {
         String query = "SELECT * FROM projet WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
@@ -47,7 +50,7 @@ public class ProjectService implements IService<Project> {
     }
 
     @Override
-    public void update(Project project) throws Exception {
+    public void update(Project project) throws SQLException {
         String query = "UPDATE projet SET titre = ?, description = ?, statut = ?, budget = ?, date_debut = ?, date_fin = ? WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, project.getTitre());
@@ -61,7 +64,7 @@ public class ProjectService implements IService<Project> {
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void delete(int id) throws SQLException {
         String query = "DELETE FROM projet WHERE id = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -71,9 +74,9 @@ public class ProjectService implements IService<Project> {
     }
 
     @Override
-    public List<Project> readAll() throws Exception {
+    public ObservableList<Project> readAll() throws SQLException {
         String query = "SELECT * FROM projet";
-        List<Project> projects = new ArrayList<>();
+        ObservableList<Project> projects = FXCollections.observableArrayList();
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -92,7 +95,7 @@ public class ProjectService implements IService<Project> {
         return projects;
     }
 
-    public List<Project> readActiveProjects() throws Exception {
+    public List<Project> readActiveProjects() throws SQLException {
         String query = "SELECT * FROM projet WHERE statut = 'active'";
         List<Project> projects = new ArrayList<>();
 
@@ -113,7 +116,7 @@ public class ProjectService implements IService<Project> {
         return projects;
     }
 
-    public List<Project> readInactiveProjects() throws Exception {
+    public List<Project> readInactiveProjects() throws SQLException {
         String query = "SELECT * FROM projet WHERE statut = 'inactive'";
         List<Project> projects = new ArrayList<>();
 
@@ -134,7 +137,7 @@ public class ProjectService implements IService<Project> {
         return projects;
     }
 
-    public void updateStatut(int id, String statut) throws Exception {
+    public void updateStatut(int id, String statut) throws SQLException {
         String query = "UPDATE projet SET statut = ? WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, statut);

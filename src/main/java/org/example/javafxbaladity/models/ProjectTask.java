@@ -89,5 +89,18 @@ public class ProjectTask {
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
+
+    @Override
+    public String toString() {
+        return "ProjectTask{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", statut=" + statut +
+                ", project_id=" + project_id +
+                ", user_id=" + user_id +
+                '}';
+    }
 }
 

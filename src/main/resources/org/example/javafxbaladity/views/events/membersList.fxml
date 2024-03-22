@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<MFXGenericDialog fx:id="genericTM" onClose="#onClose" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.MembersListController">
+   <center>
+      <Pane prefHeight="401.0" prefWidth="760.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="231.0" layoutY="9.0" prefHeight="48.0" prefWidth="319.0" text="Liste des membres">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Label>
+            <HBox layoutX="144.0" layoutY="332.0" spacing="50.0">
+               <children>
+                  <MFXButton fx:id="Btn_AjouterMD" onAction="#AddMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+                  <MFXButton fx:id="Btn_SuppM" onAction="#OnsuppMClick" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #8E1212;" text="Supprimer" />
+                  <MFXButton fx:id="exportToPDF" onAction="#exportToPDF" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #008000;" text="Exporter PDF" />
+               </children>
+            </HBox>
+            <MFXPaginatedTableView fx:id="tableviewM" layoutX="8.0" layoutY="54.0" onMouseClicked="#getDataM" prefHeight="176.0" prefWidth="744.0" />
+         </children>
+      </Pane>
+   </center>
+</MFXGenericDialog>

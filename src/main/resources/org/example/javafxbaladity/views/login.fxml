@@ -42,7 +42,7 @@
                <Font size="14.0" />
             </font>
          </Label>
-         <TextField focusTraversable="false" prefHeight="25.0" prefWidth="216.0" promptText="exemple@exemple.tn" styleClass="text-input" />
+         <TextField fx:id="tf_CheckEmailUser" focusTraversable="false" prefHeight="25.0" prefWidth="216.0" promptText="exemple@exemple.tn" styleClass="text-input" />
          <ImageView>
             <Image url="@../assets/MdMailOutline.png" />
          </ImageView>
@@ -53,13 +53,13 @@
                <Font size="14.0" />
             </font>
          </Label>
-         <TextField focusTraversable="false" prefHeight="26.0" prefWidth="218.0" promptText="********" styleClass="text-input" />
+         <TextField fx:id="tf_CheckPasswordUser" focusTraversable="false" prefHeight="26.0" prefWidth="218.0" promptText="********" styleClass="text-input" />
          <ImageView>
             <Image url="@../assets/FaEye.png" />
          </ImageView>
       </HBox>
       <CheckBox layoutX="83.0" layoutY="407.0" mnemonicParsing="false" text="Remember me " />
-      <Button layoutX="346.0" layoutY="402.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Forget Password ?">
+      <Button fx:id="ForgetPassBTN" layoutX="346.0" layoutY="402.0" mnemonicParsing="false" onAction="#Forgetpass" style="-fx-background-color: white;" text="Forget Password ?">
          <textFill>
             <LinearGradient>
                <stops>
@@ -97,7 +97,7 @@
             </Label>
             <Group>
                <children>
-                  <Button layoutY="1.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: white;" text="Sign up">
+                  <Button fx:id="onsighnUP_BTN" layoutY="1.0" mnemonicParsing="false" onAction="#onSignup" prefHeight="30.0" style="-fx-background-color: white;" text="Sign up">
                      <textFill>
                         <LinearGradient>
                            <stops>

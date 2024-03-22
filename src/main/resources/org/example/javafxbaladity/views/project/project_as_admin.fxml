@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
@@ -11,21 +12,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.ProjectController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@../../css/project.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.ProjectController">
    <left>
-      <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../../css/style.css">
+      <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../../css/project.css">
          <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
             <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../../assets/415268946_341952125380510_2075852230308134805_n.png" />
+               <Image url="@../../assets/logo.png" />
             </ImageView>
          </HBox>
          <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
@@ -103,7 +101,7 @@
          </VBox>
          <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
          <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
-            <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="220.0" styleClass="sidebar-logout" text="Logout" textFill="WHITE">
+            <Button fx:id="Logout_Btn" alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="48.0" prefWidth="220.0" styleClass="sidebar-logout" text="Logout" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
@@ -213,6 +211,7 @@
                         <HBox spacing="5.0">
                            <Button fx:id="open_modal_btn" mnemonicParsing="false" onAction="#onOpenAddModal" styleClass="button-add" text="Ajouter Projet" />
                            <Button fx:id="open_modal_tache_btn" mnemonicParsing="false" onAction="#onOpenAddTacheModal" styleClass="button-add-inline" text="Ajouter Tache" />
+                           <Button mnemonicParsing="false" onAction="#openCalendar" styleClass="button-add-inline" text="Calendar" />
                         </HBox>
                      </HBox>
                      <TableView fx:id="Projects_Table" onMouseClicked="#getProjectRow" prefHeight="217.0" prefWidth="817.0" VBox.vgrow="ALWAYS">
@@ -245,34 +244,60 @@
                <VBox prefHeight="525.0" prefWidth="918.0" spacing="20.0" styleClass="body" VBox.vgrow="ALWAYS">
                   <HBox>
                      <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des taches">
                         <font>
-                           <Font name="System Bold" size="32.0"/>
+                           <Font name="System Bold" size="32.0" />
                         </font>
                      </Text>
-                     <Pane prefHeight="0.0" prefWidth="482.0" HBox.hgrow="ALWAYS"/>
+                     <Pane prefHeight="0.0" prefWidth="482.0" HBox.hgrow="ALWAYS" />
                      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="392.0" spacing="5.0">
-                        <MFXComboBox prefHeight="40.0" prefWidth="166.0"/>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0"
-                                styleClass="button-add-inline" text="Lister"/>
+                        <MFXComboBox fx:id="user_select" floatingText="Choisir Utilisateur" prefHeight="40.0" prefWidth="166.0" />
+                        <Button mnemonicParsing="false" onAction="#showTasks" prefHeight="40.0" prefWidth="114.0" styleClass="button-add-inline" text="Lister" />
                      </HBox>
                   </HBox>
-                  <GridPane>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                     </rowConstraints>
-                  </GridPane>
+                  <HBox spacing="50.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <VBox spacing="10.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Todo Tasks">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <MFXScrollPane fx:id="todo_tasks" hbarPolicy="NEVER" prefHeight="494.0" prefWidth="414.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="50.0" />
+                           </VBox.margin>
+                        </MFXScrollPane>
+                     </VBox>
+                     <VBox spacing="10.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In progress Tasks">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <MFXScrollPane fx:id="inprogress_tasks" hbarPolicy="NEVER" prefHeight="494.0" prefWidth="414.0">
+                           <VBox.margin>
+                              <Insets bottom="50.0" />
+                           </VBox.margin>
+                        </MFXScrollPane>
+                     </VBox>
+                     <VBox spacing="10.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Done Tasks">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <MFXScrollPane fx:id="done_tasks" hbarPolicy="NEVER" prefHeight="494.0" prefWidth="414.0">
+                           <VBox.margin>
+                              <Insets bottom="50.0" />
+                           </VBox.margin>
+                        </MFXScrollPane>
+                     </VBox>
+                  </HBox>
                </VBox>
             </Tab>
          </TabPane>

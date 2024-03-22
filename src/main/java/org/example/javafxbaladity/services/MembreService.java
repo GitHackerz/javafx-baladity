@@ -1,4 +1,4 @@
-package org.example.javafxbaladity.services;
+package org.example.javafxbaladity.Services;
 
 import org.example.javafxbaladity.interfaces.IService;
 import org.example.javafxbaladity.models.Membre;
@@ -12,7 +12,9 @@ import java.sql.SQLException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MembreService implements IService<Membre> {
 
@@ -56,7 +58,7 @@ public class MembreService implements IService<Membre> {
         return list;
     }
 
-    public Membre read(int id) throws SQLException {
+    public Membre read(int id) {
         return null;
     }
 
@@ -113,6 +115,21 @@ public class MembreService implements IService<Membre> {
             return count > 0; // Si le compte est supérieur à zéro, cela signifie qu'un enregistrement similaire existe déjà
         }
         return false;
+    }
+
+    public Map<Integer, Integer> getMemberStatisticsByEvent() throws SQLException {
+        String sql = "SELECT event_id, COUNT(*) AS member_count FROM membre GROUP BY event_id";
+        Map<Integer, Integer> statistics = new HashMap<>();
+
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                int eventId = resultSet.getInt("event_id");
+                int memberCount = resultSet.getInt("member_count");
+                statistics.put(eventId, memberCount);
+            }
+        }
+        return statistics;
     }
 
 

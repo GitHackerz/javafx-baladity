@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="1098.0" style="-fx-background-color: #0c162c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.Inscription2Controller">
+   <children>
+      <MFXButton fx:id="Configrmer_user_btn" buttonType="RAISED" depthLevel="LEVEL3" layoutX="202.0" layoutY="352.0" onAction="#onConfirmerCinBtn" prefHeight="38.0" prefWidth="128.0" style="-fx-background-radius: 10px; -fx-background-color: blue;" text="Confirmer" textFill="WHITE">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </MFXButton>
+      <VBox alignment="CENTER" layoutX="549.0" layoutY="-7.0" prefHeight="667.0" prefWidth="551.0" style="-fx-background-color: white;" styleClass="page1" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+         <children>
+            <ImageView fitHeight="687.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/login%201.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <MFXTextField fx:id="tf_userCin_valid" layoutX="112.0" layoutY="277.0" prefHeight="48.0" prefWidth="308.0" />
+      <HBox alignment="TOP_CENTER" layoutX="65.0" layoutY="153.0" prefHeight="70.0" prefWidth="416.0" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text1" text=" Entrer Votre Cin " wrappingWidth="401.0">
+               <font>
+                  <Font name="System Bold" size="49.0" />
+               </font></Text>
+         </children>
+      </HBox>
+      <MFXGenericDialog fx:id="Dialog_user" layoutX="41.0" layoutY="12.0" prefHeight="622.0" prefWidth="477.0" showAlwaysOnTop="false" showClose="false" showMinimize="false" style="-fx-background-color: #0c162c;" visible="false">
+         <center>
+            <Pane prefHeight="632.0" prefWidth="492.0" style="-fx-background-color: #0c162c;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="tf_userNom" alignment="CENTER" layoutX="33.0" layoutY="173.0" prefHeight="37.0" prefWidth="326.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="90.0" text="Nom : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_nomCitoyen_verif" minHeight="30.0" prefHeight="14.0" prefWidth="236.0" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="tf_userPrenom" alignment="CENTER" layoutX="32.0" layoutY="263.0" prefHeight="37.0" prefWidth="328.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="90.0" text="Prenom : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_PrenomCitoyen_verif" minHeight="30.0" prefHeight="49.0" prefWidth="256.0" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="tf_userAdresse" alignment="CENTER" layoutX="30.0" layoutY="351.0" prefHeight="37.0" prefWidth="333.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="90.0" text="Adresse : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_adresseCitoyen_verif" minHeight="30.0" prefHeight="50.0" prefWidth="226.0" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="tf_userDateN" alignment="CENTER" layoutX="28.0" layoutY="447.0" prefHeight="37.0" prefWidth="337.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="196.0" text="Date de Naissance : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_dateCitoyen_verif" minHeight="30.0" prefHeight="50.0" prefWidth="248.0" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="23.0" layoutY="20.0" prefHeight="100.0" prefWidth="329.0">
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="333.0">
+                           <children>
+                              <Label layoutX="59.0" layoutY="27.0" prefHeight="46.0" prefWidth="291.0" text="Confirmer Données" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="31.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="ConfirmerData_user" buttonType="RAISED" depthLevel="LEVEL3" layoutX="146.0" layoutY="516.0" onAction="#OninterfaceInscripBTN" prefHeight="38.0" prefWidth="128.0" style="-fx-background-radius: 10px; -fx-background-color: blue;" text="Confirmer" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="Annuler_Emp" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" depthLevel="LEVEL3" layoutX="420.0" layoutY="-8.0" onAction="#annulerEmpBTN" prefHeight="22.0" prefWidth="26.0" style="-fx-background-radius: 10px;" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat-Regular" size="14.0" />
+                     </font>
+                  </MFXButton>
+                  <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="429.0">
+                     <image>
+                        <Image url="@../assets/cross.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
+         </center>
+      </MFXGenericDialog>
+      <MFXGenericDialog fx:id="Dialog_inscriptio" layoutX="41.0" layoutY="11.0" prefHeight="650.0" prefWidth="477.0" showAlwaysOnTop="false" showClose="false" showMinimize="false" style="-fx-background-color: #0c162c;">
+         <center>
+            <Pane prefHeight="580.0" prefWidth="609.0" style="-fx-background-color: #0c162c;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" layoutX="42.0" layoutY="203.0" prefHeight="37.0" prefWidth="371.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="90.0" text="Email : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_UserEmail_Inscrip" minHeight="30.0" prefHeight="50.0" prefWidth="214.0" />
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../../../../../../design_V4/design_V3/design/src/main/resources/assets/MdMailOutline.png" />
+                           </image>
+                           <effect>
+                              <Reflection />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="42.0" layoutY="275.0" prefHeight="37.0" prefWidth="371.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="90.0" text="Password : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_UserPassword_Inscrip" minHeight="30.0" prefHeight="50.0" prefWidth="214.0" />
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../../../../../../design_V4/design_V3/design/src/main/resources/assets/MdMailOutline.png" />
+                           </image>
+                           <effect>
+                              <Reflection />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="42.0" layoutY="130.0" prefHeight="37.0" prefWidth="371.0" spacing="20.0" styleClass="text-hbib" stylesheets="@../../../../../../../../design_V4/design_V3/design/src/main/resources/css/style2.css">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="90.0" text="Numero : " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="tf_UserNumero_Inscrip" minHeight="30.0" prefHeight="50.0" prefWidth="214.0" />
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../../../../../../design_V4/design_V3/design/src/main/resources/assets/MdMailOutline.png" />
+                           </image>
+                           <effect>
+                              <Reflection />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="Sinscrire_User_Btn" layoutX="240.0" layoutY="384.0" onAction="#addUser_BTN" prefHeight="48.0" prefWidth="149.0" style="-fx-background-radius: 10px; -fx-background-color: blue;" text="S'inscrire" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></MFXButton>
+                  <MFXButton fx:id="Sinscrire_User_Image" layoutX="66.0" layoutY="384.0" onAction="#addImageUser_BTN" prefHeight="48.0" prefWidth="149.0" style="-fx-background-radius: 10px; -fx-background-color: blue;" text="Insert Image" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></MFXButton>
+                  <MFXButton fx:id="CloseDocReq1" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" depthLevel="LEVEL3" layoutX="425.0" layoutY="-15.0" onAction="#closeaddpane1" prefHeight="22.0" prefWidth="26.0" style="-fx-background-radius: 10px;" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat-Regular" size="14.0" />
+                     </font>
+                  </MFXButton>
+                  <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="434.0" layoutY="-7.0">
+                     <image>
+                        <Image url="@../assets/cross.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="114.0" layoutY="48.0" prefHeight="40.0" prefWidth="253.0" text="Saisir vos données" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
+      </MFXGenericDialog>
+      <MFXGenericDialog fx:id="Dialog_camera" layoutX="18.0" minHeight="400.0" prefHeight="481.0" prefWidth="518.0" showAlwaysOnTop="false" showClose="false" showMinimize="false" translateX="550.0" translateY="100.0">
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="514.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="counter_Label" layoutX="82.0" layoutY="450.0" prefHeight="80.0" prefWidth="112.0" style="-fx-background-color: orange;" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="54.0" />
+                     </font>
+                  </Label>
+                  <MFXButton fx:id="Capture_BTN" buttonType="RAISED" depthLevel="LEVEL3" layoutX="226.0" layoutY="471.0" onAction="#startCapture" prefHeight="38.0" prefWidth="128.0" style="-fx-background-radius: 10px; -fx-background-color: blue;" text="Capture" textFill="WHITE" translateX="-100.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="Capture_CloseBTN1" buttonType="RAISED" depthLevel="LEVEL3" layoutX="366.0" layoutY="471.0" onAction="#stopC" prefHeight="38.0" prefWidth="128.0" style="-fx-background-radius: 10px; -fx-background-color: blue;" text="Close" textFill="WHITE" translateX="-100.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </MFXButton>
+                  <StackPane layoutX="11.0" layoutY="63.0" prefHeight="380.0" prefWidth="501.0">
+                     <children>
+                        <ImageView fx:id="Camer_Label" fitHeight="355.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+
+                  </StackPane>
+               </children>
+            </Pane>
+         </center>
+      </MFXGenericDialog>
+   </children>
+</Pane>

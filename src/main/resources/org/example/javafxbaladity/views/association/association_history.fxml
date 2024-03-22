@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../css/association.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.AssociationHistoryController">
+    <left>
+        <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../../css/association.css">
+            <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
+                <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../assets/logo2.png" />
+                </ImageView>
+            </HBox>
+            <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+            <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+                <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="sidebar-link" text="Home" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/icons8-home-24.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0" mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0" styleClass="sidebar-link" text="Users" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineUser.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Reclamations" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineReconciliation.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Documents" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/IoDocumentTextOutline.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Events" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/MdEventNote.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Project_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Projects" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineProject.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Association_btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link-active" text="Associations" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/IoStorefrontOutline.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </VBox>
+            <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
+                <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="220.0" styleClass="sidebar-logout" text="Logout" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineLogout.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+                <padding>
+                    <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                </padding>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back, User!">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Text>
+                <Pane minWidth="-Infinity" prefHeight="79.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER" prefHeight="79.0" prefWidth="82.0" spacing="20.0" HBox.hgrow="SOMETIMES">
+                    <ImageView>
+                        <Image url="@../../assets/Notif.png" />
+                    </ImageView>
+                    <ImageView fitHeight="44.0" fitWidth="46.0">
+                        <Image url="@../../assets/user.png" />
+                    </ImageView>
+                </HBox>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                <Text fill="#4426a1" strokeType="OUTSIDE" strokeWidth="0.0" text="Listes des historiques">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Text>
+                <VBox spacing="20.0">
+                    <HBox>
+                        <Pane prefHeight="26.0" prefWidth="677.0" HBox.hgrow="ALWAYS" />
+                    </HBox>
+                    <MFXPaginatedTableView fx:id="table" onMouseClicked="#getData" prefHeight="374.0" prefWidth="939.0" VBox.vgrow="ALWAYS" />
+                </VBox>
+            <VBox.margin>
+               <Insets left="50.0" right="50.0" />
+            </VBox.margin>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

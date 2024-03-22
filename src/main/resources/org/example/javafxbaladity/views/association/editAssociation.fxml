@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<MFXGenericDialog onClose="#onClose" stylesheets="@../../css/association.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.EditAssociationController">
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="518.0" prefWidth="400.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+            </padding>
+            <Text text="Modifier Association">
+                <font>
+                    <Font name="System Bold" size="40.0" />
+                </font>
+            </Text>
+            <VBox prefHeight="259.0" prefWidth="299.0" spacing="15.0">
+                <VBox>
+                    <MFXTextField fx:id="nom_association" floatingText="Nom Association" prefHeight="50.0" prefWidth="390.0" />
+                    <Label fx:id="nom_association_error" styleClass="label-error" />
+                </VBox>
+                <VBox>
+                    <MFXComboBox fx:id="adresse_association" floatingText="Adresse Association" prefHeight="41.0" prefWidth="411.0" />
+                    <Label fx:id="adresse_association_error" styleClass="label-error" />
+                </VBox>
+                <VBox>
+                    <MFXTextField fx:id="caisse_association" floatingText="Caisse Association" prefHeight="50.0" prefWidth="390.0" />
+                    <Label fx:id="caisse_association_error" styleClass="label-error" />
+                </VBox>
+                <VBox>
+                    <MFXComboBox fx:id="type_association" floatingText="Type Association" prefHeight="40.0" prefWidth="456.0" />
+                    <Label fx:id="type_association_error" styleClass="label-error" />
+                </VBox>
+                <VBox>
+                    <MFXCheckbox fx:id="statut_association" text="Association Active" />
+                    <Label fx:id="description_projet_error1" styleClass="label-error" />
+                </VBox>
+            </VBox>
+            <MFXButton fx:id="edit_association_btn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onAction="#editAssociation" rippleAnimateShadow="true" rippleRadius="30.0" style="-fx-background-color: #624DE3; -fx-text-fill: white; -fx-background-radius: 10;" styleClass="button-add" text="Modifier Association" textFill="WHITE">
+                <padding>
+                    <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                </padding>
+            </MFXButton>
+        </VBox>
+    </center>
+</MFXGenericDialog>

@@ -7,12 +7,17 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.example.javafxbaladity.Services.CitoyenService;
+import org.example.javafxbaladity.Services.ProjectTaskService;
+import org.example.javafxbaladity.Services.UserService;
+import org.example.javafxbaladity.models.Citoyen;
 import org.example.javafxbaladity.models.ProjectTask;
-import org.example.javafxbaladity.services.ProjectTaskService;
+import org.example.javafxbaladity.models.User;
 import org.example.javafxbaladity.utils.KeyValuePair;
 import org.example.javafxbaladity.utils.Modals;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,8 @@ import java.util.List;
 public class AddTaskController {
     private int project_id;
     private final ProjectTaskService projectTaskService = new ProjectTaskService();
+    private final UserService userService = new UserService();
+    private final CitoyenService citoyenService = new CitoyenService();
 
     @FXML
     private MFXButton add_task_btn;
@@ -84,7 +91,7 @@ public class AddTaskController {
         }
 
         try {
-            projectTaskService.addTask(
+            projectTaskService.create(
                     new ProjectTask(
                             titre_input.getText(),
                             description_input.getText(),
@@ -118,13 +125,14 @@ public class AddTaskController {
         this.project_id = project_id;
     }
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         date_input.setValue(LocalDate.now());
-        List<KeyValuePair<Integer>> users = new ArrayList<>();
-        users.add(new KeyValuePair<>("User 1", 1));
-        users.add(new KeyValuePair<>("User 2", 2));
-        users.add(new KeyValuePair<>("User 3", 3));
-        user_input.getItems().addAll(users);
+        List<User> users = userService.getUsersList();
+
+        for (User user : users) {
+            Citoyen citoyen = citoyenService.getCitoyen(user.getIdCitoyen());
+            user_input.getItems().addAll(new KeyValuePair<>(citoyen.getNomCitoyen(), user.getId()));
+        }
     }
 
     private void resetInputsErrors() {

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.EventController">
+   <left>
+      <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../../css/style.css">
+         <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
+            <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../../assets/415268946_341952125380510_2075852230308134805_n.png" />
+            </ImageView>
+         </HBox>
+         <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+         <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+            <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="sidebar-link" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/icons8-home-24.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0" mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0" styleClass="sidebar-link" text="Users" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/AiOutlineUser.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Reclamations_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onReclamationsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Reclamations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/AiOutlineReconciliation.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Documents" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/IoDocumentTextOutline.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Events_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onEventsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link-active" text="Events" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/MdEventNote.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Projects_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onProjectsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Projects" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/AiOutlineProject.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Associations_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onAssociationsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Associations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/IoStorefrontOutline.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+         <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
+            <Button fx:id="Logout_Btn" alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="48.0" prefWidth="220.0" styleClass="sidebar-logout" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView>
+                     <Image url="@../../assets/AiOutlineLogout.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </HBox>
+      </VBox>
+   </left>
+   <center>
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="808.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
+         <Pane prefHeight="700.0" prefWidth="920.0">
+            <Label layoutX="262.0" layoutY="146.0" prefHeight="58.0" prefWidth="359.0" text="Listes des evenements" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="Btn_Details" layoutX="415.0" layoutY="561.0" onAction="#DetailsClick" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #0C162C;" text="Details" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </MFXButton>
+            <MFXButton layoutX="235.0" layoutY="436.0" />
+            <MFXButton layoutX="235.0" layoutY="436.0" />
+            <MFXButton fx:id="updateEvents_Btn" layoutX="247.0" layoutY="561.0" onAction="#onEventUpdateBtnClick" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #CD9400;" text="Modifier" textFill="WHITE" />
+            <MFXButton fx:id="deleteEvent_Btn" layoutX="594.0" layoutY="561.0" onAction="#onEventDeleteBtnClick" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #8E1212;" text="Supprimer" textFill="WHITE" />
+            <MFXButton fx:id="addEvent_Btn" layoutX="669.0" layoutY="175.0" onAction="#onEventAddBtnClick" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #624DE3;" text="+ADD EVENTS" />
+            <MFXTextField fx:id="recherche_Textfield" layoutX="65.0" layoutY="174.0" onAction="#setOnAction" prefHeight="48.0" prefWidth="179.0" />
+            <ImageView layoutX="219.0" layoutY="191.0">
+               <image>
+                  <Image url="@../../assets/akar-icons_search.png" />
+               </image>
+            </ImageView>
+            <MFXPaginatedTableView fx:id="tableviewE" layoutX="35.0" layoutY="230.0" onMouseClicked="#getData" prefHeight="326.0" prefWidth="835.0" />
+            <MFXGenericDialog fx:id="DialogN" layoutX="319.0" layoutY="18.0" minHeight="147.0" prefHeight="147.0" prefWidth="471.0" showAlwaysOnTop="false" showClose="false" showMinimize="false" visible="false">
+               <center>
+                  <Pane prefHeight="151.0" prefWidth="471.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="54.0" layoutY="8.0" prefHeight="36.0" prefWidth="268.0" text="Bonjour n'oubliez pas que vous avez l'evenment :" />
+                        <Label layoutX="54.0" layoutY="45.0" prefHeight="25.0" prefWidth="112.0" text="au lieu suivant : " />
+                        <MFXButton fx:id="Btn_notif" layoutX="188.0" layoutY="79.0" onAction="#onbtnNotif" prefHeight="25.0" prefWidth="54.0" style="-fx-background-color: #624DE3;" text="OK" />
+                        <Label fx:id="labelNOm" layoutX="322.0" layoutY="14.0" prefHeight="25.0" prefWidth="105.0" />
+                        <Label fx:id="labelLieu" layoutX="167.0" layoutY="45.0" prefHeight="25.0" prefWidth="82.0" />
+                     </children>
+                  </Pane>
+               </center>
+            </MFXGenericDialog>
+            <MFXButton fx:id="showMemberStatistics" layoutX="585.0" layoutY="615.0" onAction="#showMemberStatistics" prefHeight="48.0" prefWidth="106.0" text="STATS" />
+         </Pane>
+         <MFXNotificationCenter fx:id="Notif" onMouseClicked="#onCheckTodayEvents" visible="false" />
+         <Pane prefHeight="65.0" prefWidth="920.0" style="-fx-background-color: white;">
+            <children>
+               <MFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" depthLevel="LEVEL3" layoutY="-3.0" prefHeight="65.0" prefWidth="920.0" />
+               <Label layoutX="22.0" layoutY="13.0" prefHeight="39.0" prefWidth="232.0" text="Welcome back ," textAlignment="CENTER">
+                  <font>
+                     <Font name="Montserrat-Regular" size="28.0" />
+                  </font>
+               </Label>
+               <Label fx:id="user_name" layoutX="254.0" layoutY="13.0" prefHeight="39.0" prefWidth="232.0" textAlignment="CENTER">
+                  <font>
+                     <Font name="Montserrat-Regular" size="28.0" />
+                  </font>
+               </Label>
+            </children>
+         </Pane>
+      </Pane>
+   </center>
+</BorderPane>

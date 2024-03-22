@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<MFXGenericDialog fx:id="genericAM" onClose="#onClose" prefHeight="347.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.AddMemberController">
+   <center>
+      <Pane prefHeight="382.0" prefWidth="435.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="23.0" layoutY="19.0" prefHeight="25.0" prefWidth="62.0" text="Nom" />
+            <Label layoutX="23.0" layoutY="79.0" prefHeight="25.0" prefWidth="62.0" text="Prenom" />
+            <MFXTextField fx:id="Nom_Textfield" layoutX="186.0" layoutY="14.0" prefHeight="36.0" prefWidth="173.0" />
+            <MFXTextField fx:id="Prenom_Textfield" layoutX="186.0" layoutY="67.0" prefHeight="36.0" prefWidth="173.0" />
+            <Label layoutX="23.0" layoutY="126.0" prefHeight="25.0" prefWidth="62.0" text="Age" />
+            <MFXTextField fx:id="Age_Textfield" layoutX="186.0" layoutY="127.0" prefHeight="36.0" prefWidth="173.0" />
+            <MFXButton fx:id="BtnAjoutM" layoutX="151.0" layoutY="240.0" onAction="#OnBtnAjouM" prefHeight="51.0" prefWidth="149.0" style="-fx-background-color: #624DE3;" text="Ajouter" />
+            <Label layoutX="23.0" layoutY="192.0" prefHeight="17.0" prefWidth="62.0" text="Events" />
+            <MFXComboBox fx:id="Events_combo" layoutX="186.0" layoutY="189.0" prefHeight="39.0" prefWidth="163.0" />
+            <Label fx:id="erreurNom" layoutX="381.0" layoutY="26.0" prefHeight="25.0" prefWidth="47.0" text="erreur" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="erreurPrenom" layoutX="381.0" layoutY="79.0" prefHeight="25.0" prefWidth="47.0" text="erreur" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="erreurAge1" layoutX="381.0" layoutY="126.0" prefHeight="25.0" prefWidth="47.0" text="erreur" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="erreurAge2" layoutX="359.0" layoutY="149.0" prefHeight="25.0" prefWidth="74.0" text="Non Majeur" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="erreurDoublon" layoutX="134.0" layoutY="294.0" prefHeight="25.0" prefWidth="207.0" text="Ce membre existe deja" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</MFXGenericDialog>

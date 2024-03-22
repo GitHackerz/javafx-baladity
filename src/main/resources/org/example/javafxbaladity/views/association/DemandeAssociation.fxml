@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxbaladity.gui.DemandeAssociationController">
+    <left>
+        <VBox prefHeight="731.0" prefWidth="282.0" styleClass="sidebar" stylesheets="@../../css/style.css">
+            <HBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="200.0" spacing="100.0">
+                <ImageView fitHeight="149.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../assets/logo.png" />
+                </ImageView>
+            </HBox>
+            <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+            <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+                <Button fx:id="Home_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="48.0" prefWidth="236.0" styleClass="sidebar-link" text="Home" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/icons8-home-24.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Users_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="15.0" mnemonicParsing="false" onAction="#onUserButtonClick" prefHeight="48.0" prefWidth="237.0" styleClass="sidebar-link" text="Users" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineUser.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Reclamations" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineReconciliation.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Documents_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onDocumentsButtonClick" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Documents" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/IoDocumentTextOutline.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Events" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/MdEventNote.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Project_Btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="sidebar-link" text="Projects" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineProject.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="Association_btn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="222.0" styleClass="sidebar-link-active" text="DemandeAssociations" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/IoStorefrontOutline.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </VBox>
+            <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="10.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="TOP_CENTER" prefHeight="57.0" prefWidth="279.0">
+                <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="220.0" styleClass="sidebar-logout" text="Logout" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../assets/AiOutlineLogout.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </left>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="135.0" prefWidth="918.0" style="-fx-background-color: white;">
+                    <children>
+                        <Text strokeMiterLimit="20.0" strokeType="OUTSIDE" strokeWidth="40.0" text="Welcom Back,emir!" textAlignment="CENTER">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                        </Text>
+                        <Pane prefHeight="138.0" prefWidth="292.0" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                            </padding>
+                        </Pane>
+                        <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../../../../../../Desktop/Button/react-icons/md/MdOutlineNotifications.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../../../../../../Desktop/image%202.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                    </padding>
+                </HBox>
+                <ImageView fitHeight="83.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" />
+                <Text fill="#0c162c" strokeMiterLimit="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Liste des Associations" textAlignment="CENTER" wrappingWidth="379.9925537109375">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Text>
+                <ImageView fitHeight="44.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="sidebar">
+                    <image>
+                        <Image url="@../../../../../../../../../../Desktop/PI/Button/Search%20Input.png" />
+                    </image>
+                </ImageView>
+                <MFXPaginatedTableView fx:id="table" layoutX="50.0" layoutY="240.0" onMouseClicked="#getData" prefHeight="373.0" prefWidth="771.0" />
+                <MFXGenericDialog fx:id="AssociationManager" layoutX="217.0" layoutY="116.0" prefHeight="394.0" prefWidth="400.0" showAlwaysOnTop="false" showClose="false" showMinimize="false" style="-fx-background-color: white; -fx-background-radius: 10px;">
+                    <center>
+                        <Pane prefHeight="412.0" prefWidth="505.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <VBox prefHeight="332.0" prefWidth="359.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="59.05974578857422" />
+                                        <TextField fx:id="tfNom" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" />
+                                        <MFXComboBox fx:id="tfAdresse" prefHeight="28.0" prefWidth="359.0" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Caisse" />
+                                        <TextField fx:id="tfCaisse" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+                                        <MFXComboBox fx:id="tfType" prefHeight="40.0" prefWidth="359.0" />
+                                        <HBox>
+                                            <children>
+                                                <Button fx:id="btn_add" defaultButton="true" mnemonicParsing="false" onAction="#AjouterAssociation" style="-fx-background-color: #0C162C;" text="Ajouter" textFill="#faf7f2" translateX="120.0" translateY="20.0" />
+                                                <Button fx:id="bttnModifier" cancelButton="true" defaultButton="true" mnemonicParsing="false" onAction="#onModifierAssociationClick" style="-fx-background-color: CD9400;" text="Modifier" textFill="#f7e9e9" translateX="120.0" translateY="20.0" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </Pane>
+                    </center>
+                    <top>
+                        <MFXButton fx:id="BttnClose" alignment="TOP_RIGHT" contentDisplay="RIGHT" onAction="#onCloseClick" prefHeight="26.0" prefWidth="37.0" style="-fx-background-color: gray;" text="Close" textAlignment="RIGHT" translateX="170.0" BorderPane.alignment="CENTER" />
+                    </top>
+                </MFXGenericDialog>
+                <MFXButton fx:id="bttnAjouterAssociation" layoutX="705.0" layoutY="199.0" onAction="#AjouterAssociation1" prefHeight="25.0" prefWidth="104.0" text="Ajouter" />
+                <Button fx:id="bttnSupprimer" defaultButton="true" layoutX="336.0" layoutY="624.0" mnemonicParsing="false" onAction="#SupprimerAssociation" style="-fx-background-color: #8E1212;" text="Supprimer" textFill="#fffafa" />
+                <Button fx:id="bttnDetails" defaultButton="true" layoutX="417.0" layoutY="624.0" mnemonicParsing="false" onAction="#DetailsAssociation" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: blue;" text="Details" textFill="#fffafa" />
+            </children>
+        </Pane>
+    </center>
+</BorderPane>
