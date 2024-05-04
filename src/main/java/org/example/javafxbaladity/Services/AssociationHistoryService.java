@@ -18,7 +18,7 @@ public class AssociationHistoryService implements IService<AssociationHistory> {
     public void create(AssociationHistory associationHistory) throws SQLException {
         String query = "INSERT INTO historique_modification (title, description, id_association) VALUES (?, ?, ?)";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        PreparedStatement preparedStatement = .prepareStatement(query);
         preparedStatement.setString(1, associationHistory.getTitle());
         preparedStatement.setString(2, associationHistory.getDescription());
         preparedStatement.setInt(3, associationHistory.getAssociation().getId());

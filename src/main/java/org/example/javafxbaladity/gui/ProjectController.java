@@ -59,7 +59,7 @@ public class ProjectController implements TaskUpdateListener {
     @FXML
     private MFXScrollPane done_tasks;
 
-    @FXML
+    @FXMLa
     private MFXScrollPane inprogress_tasks;
 
     @FXML
